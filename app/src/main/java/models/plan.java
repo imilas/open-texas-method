@@ -49,6 +49,10 @@ public class plan {
         squatSetsMon.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
         Exercise exercise1 = new Exercise("squat",squatSetsMon);
 
+        ArrayList<Set> liftSetsMon= new ArrayList<>();
+        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,0)));
+        Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
+
         ArrayList<Set> benchSetsMon= new ArrayList<>();
         benchSetsMon.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
         benchSetsMon.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
@@ -56,15 +60,11 @@ public class plan {
         benchSetsMon.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
         Exercise exercise3 = new Exercise("bench",benchSetsMon);
 
-        ArrayList<Set> liftSetsMon= new ArrayList<>();
-        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,0)));
-        Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
-
         ArrayList<Exercise>  exercisesVol=new ArrayList<Exercise>();
         exercisesVol.add(exercise1);
         exercisesVol.add(exercise2);
         exercisesVol.add(exercise3);
-        Workout monday=new Workout("Volume Day",exercisesVol);
+        Workout volume=new Workout("Volume Day",exercisesVol);
 
         //***Tuesday***
 
@@ -96,13 +96,40 @@ public class plan {
         exercisesTue.add(exercise5);
         exercisesTue.add(exercise6);
 
-        Workout tuesday=new Workout("Tuesday",exercisesTue);
+        Workout reovery=new Workout("recovery",exercisesTue);
+
+        //Intensity day
+        //**********week1*******************
+
+        //monday
+        ArrayList<Set> squatSetsIntense= new ArrayList<>();
+        squatSetsIntense.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
+        exercise1 = new Exercise("squat",squatSetsIntense);
+
+        ArrayList<Set> liftSetsIntense= new ArrayList<>();
+        liftSetsIntense.add(new Set("5",calculateWeight(liftMax,fL,unit,0)));
+        exercise2 = new Exercise("deadlift",liftSetsIntense);
+
+        ArrayList<Set> benchSetsIntense= new ArrayList<>();
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
+        exercise3 = new Exercise("bench",benchSetsIntense);
+
+        exercisesVol=new ArrayList<Exercise>();
+        exercisesVol.add(exercise1);
+        exercisesVol.add(exercise2);
+        exercisesVol.add(exercise3);
+        Workout intense=new Workout("intensity",exercisesVol);
 
         ArrayList<Workout> workouts = new ArrayList<Workout>();
-        workouts.add(monday);
-        workouts.add(tuesday);
+        workouts.add(volume);
+        workouts.add(reovery);
+        workouts.add(intense);
 
         this.week1 = new WorkoutWeek("Week1",workouts);
+
+
 
     }
 

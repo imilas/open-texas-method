@@ -1,5 +1,6 @@
 package bro.tm;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,21 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScreenSlidePagerActivity extends FragmentActivity {
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    private static final int NUM_PAGES = 4;
 
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
+    private static final int NUM_PAGES = 2;
     private ViewPager mPager;
-
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
     private PagerAdapter mPagerAdapter;
 
     @Override
@@ -55,11 +48,12 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         }
     }
 
-    /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
-     */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        @Override
+        public int getItemPosition(Object obj){
+            return POSITION_NONE;
+        }
+
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -70,19 +64,21 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 //setup page
                 return new SetupFragment().newInstance();
             }else{
-                return new ScreenSlidePageFragment().newInstance(position);
+                Fragment fragment = new ScreenSlidePageFragment().newInstance(position);
+
+                return fragment;
             }
-
         }
-
         @Override
         public int getCount() {
             return NUM_PAGES;
         }
+
     }
 
     public void updateMaxes(View v){
         //get the maxes from the view and put them in the ShareadPreferences
+
 
         ViewGroup setupLayout = (ViewGroup) this.findViewById(R.id.setup_layout);
 
@@ -101,7 +97,22 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         editor.putString("squat_max",squatMax);
         editor.putString("dead_lift_max",deadLiftMax);
 
+
         editor.commit();
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            try {
+                Bundle arg= fragment.getArguments();
+                int pageNum=arg.getInt("pageNum");
+                if (arg.getInt("pageNum")==1){
+                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.detach(fragment).attach(fragment).commit();
+
+                }
+            } catch (NullPointerException e) {
+
+            }
+        }
+
 
     }
 }

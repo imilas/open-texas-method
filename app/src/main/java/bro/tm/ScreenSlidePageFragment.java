@@ -73,9 +73,20 @@ public class ScreenSlidePageFragment extends Fragment {
                 for (Set set : exercise.sets){
                     TextView setWeightAndReps = new TextView(this.getContext());
                     setWeightAndReps.setLayoutParams(params);
-                    setWeightAndReps.setText(set.Reps + "x\n"+set.Weight);
+                    if(set.Weight.length()>4){
+                        setWeightAndReps.setText(set.Weight + "\n x"+set.Reps);
+                    }else{
+                        setWeightAndReps.setText(set.Weight + "x"+set.Reps);
+                    }
+
+
                     setWeightAndReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
 
+//                    GradientDrawable gd = new GradientDrawable();
+//                    gd.setColor(0xFF00FF00); // Changes this drawbale to use a single color instead of a gradient
+//                    gd.setCornerRadius(5);
+//                    gd.setStroke(1, 0xFF000000);
+//                    setWeightAndReps.setBackgroundDrawable(gd);
                     setView.addView(setWeightAndReps);
 
                 }
@@ -83,6 +94,8 @@ public class ScreenSlidePageFragment extends Fragment {
             }
 
         }
+
+
         return rootView;
     }
 

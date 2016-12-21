@@ -12,8 +12,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,6 +32,8 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
+
+
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -49,10 +54,10 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        @Override
-        public int getItemPosition(Object obj){
-            return POSITION_NONE;
-        }
+//        @Override
+//        public int getItemPosition(Object obj){
+//            return POSITION_NONE;
+//        }
 
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
@@ -65,6 +70,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 return new SetupFragment().newInstance();
             }else{
                 Fragment fragment = new ScreenSlidePageFragment().newInstance(position);
+
 
                 return fragment;
             }

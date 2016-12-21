@@ -1,3 +1,4 @@
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/exercise"
     android:layout_width="match_parent"
@@ -14,7 +15,8 @@
         android:id="@+id/exercise_sets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
     </LinearLayout>
 </LinearLayout>

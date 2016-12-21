@@ -1,8 +1,6 @@
 package bro.tm;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
@@ -12,12 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.TableLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
-/**
- * Created by root on 04/12/16.
- */
 import models.Exercise;
 import models.Set;
 import models.Workout;
@@ -38,14 +33,14 @@ public class ScreenSlidePageFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page , container, false);
-        TextView v= (TextView) rootView.findViewById(R.id.page_number);
-        int pageNum=getArguments().getInt("pageNum",0);
-        v.setText("Day" + Integer.toString(pageNum));
+
+        ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page , container, false);
+        LinearLayout rootView= (LinearLayout) planView.findViewById(R.id.content);
+
+
 
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
         plan plan = new plan(prefs);
 
         for(Workout workout : plan.getWeek1().workouts){
@@ -70,6 +65,7 @@ public class ScreenSlidePageFragment extends Fragment {
                 setName.setGravity(Gravity.CENTER);
                 setName.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
                 setView.addView(setName);
+                setView.setBackgroundResource(R.drawable.customborder);
                 for (Set set : exercise.sets){
                     TextView setWeightAndReps = new TextView(this.getContext());
                     setWeightAndReps.setLayoutParams(params);
@@ -78,25 +74,16 @@ public class ScreenSlidePageFragment extends Fragment {
                     }else{
                         setWeightAndReps.setText(set.Weight + "x"+set.Reps);
                     }
-
-
                     setWeightAndReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-
-//                    GradientDrawable gd = new GradientDrawable();
-//                    gd.setColor(0xFF00FF00); // Changes this drawbale to use a single color instead of a gradient
-//                    gd.setCornerRadius(5);
-//                    gd.setStroke(1, 0xFF000000);
-//                    setWeightAndReps.setBackgroundDrawable(gd);
                     setView.addView(setWeightAndReps);
 
                 }
+
                 rootView.addView(setView);
             }
 
         }
-
-
-        return rootView;
+        return planView;
     }
 
 }

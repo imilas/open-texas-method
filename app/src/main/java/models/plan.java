@@ -96,7 +96,7 @@ public class plan {
         exercisesTue.add(exercise5);
         exercisesTue.add(exercise6);
 
-        Workout reovery=new Workout("recovery",exercisesTue);
+        Workout reovery=new Workout("Recovery Day",exercisesTue);
 
         //Intensity day
         //**********week1*******************
@@ -120,7 +120,7 @@ public class plan {
         exercisesVol.add(exercise1);
         exercisesVol.add(exercise2);
         exercisesVol.add(exercise3);
-        Workout intense=new Workout("intensity",exercisesVol);
+        Workout intense=new Workout("Intensity Day",exercisesVol);
 
         ArrayList<Workout> workouts = new ArrayList<Workout>();
         workouts.add(volume);

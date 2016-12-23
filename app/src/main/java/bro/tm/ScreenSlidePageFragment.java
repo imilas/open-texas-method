@@ -18,6 +18,7 @@ import models.Set;
 import models.Workout;
 import models.plan;
 
+import static android.support.design.R.id.center;
 import static android.widget.LinearLayout.LayoutParams.*;
 
 public class ScreenSlidePageFragment extends Fragment {
@@ -33,11 +34,8 @@ public class ScreenSlidePageFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-
         ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page , container, false);
         LinearLayout rootView= (LinearLayout) planView.findViewById(R.id.content);
-
-
 
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -46,37 +44,42 @@ public class ScreenSlidePageFragment extends Fragment {
         for(Workout workout : plan.getWeek1().workouts){
 
             ViewGroup row = (ViewGroup) inflater.inflate(R.layout.exercise_layout , container, false);
-
             TextView workoutDay = (TextView)row.findViewById(R.id.workout_day);
             workoutDay.setText(workout.day);
             rootView.addView(row);
 
             //get the plan and transform create the layout based on it for it and add it to the view
             for(Exercise exercise : workout.exercises){
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f);
+
                 LinearLayout setView = new LinearLayout(this.getContext());
                 setView.setOrientation((LinearLayout.HORIZONTAL));
                 setView.setLayoutParams(new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
 
-                TextView setName = new TextView(this.getContext());
+                SingleLineTextView setName = new SingleLineTextView(this.getContext());
 
-                setName.setLayoutParams(params);
+                setName.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1f));
                 setName.setText(exercise.exerciseName);
-                setName.setGravity(Gravity.CENTER);
                 setName.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+                setView.setGravity(center);
                 setView.addView(setName);
                 setView.setBackgroundResource(R.drawable.customborder);
-                for (Set set : exercise.sets){
-                    TextView setWeightAndReps = new TextView(this.getContext());
-                    setWeightAndReps.setLayoutParams(params);
-                    if(set.Weight.length()>4){
-                        setWeightAndReps.setText(set.Weight + "\n x"+set.Reps);
-                    }else{
-                        setWeightAndReps.setText(set.Weight + "x"+set.Reps);
-                    }
-                    setWeightAndReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-                    setView.addView(setWeightAndReps);
 
+                for (Set set : exercise.sets){
+                    //make a layout with 2 text views on top of each other for sets and reps
+
+                    ViewGroup setXRepsLayout = (ViewGroup) inflater.inflate(R.layout.set_x_rep_layout, container, false);
+                    setXRepsLayout.setLayoutParams(new LayoutParams(WRAP_CONTENT,WRAP_CONTENT,1f));
+
+                    SingleLineTextView setWeight = (SingleLineTextView) setXRepsLayout.findViewById(R.id.set_weight);
+                    SingleLineTextView setReps = (SingleLineTextView) setXRepsLayout.findViewById(R.id.set_rep);
+
+                    setWeight.setText(set.Weight);
+                    setReps.setText("x "+set.Reps);
+
+                    setReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+                    setWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+
+                    setView.addView(setXRepsLayout);
                 }
 
                 rootView.addView(setView);

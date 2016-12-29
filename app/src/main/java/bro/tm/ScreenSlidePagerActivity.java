@@ -2,6 +2,7 @@ package bro.tm;
 
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -54,11 +55,6 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-//        @Override
-//        public int getItemPosition(Object obj){
-//            return POSITION_NONE;
-//        }
-
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -66,12 +62,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0){
-                //setup page
                 return new SetupFragment().newInstance();
             }else{
                 Fragment fragment = new ScreenSlidePageFragment().newInstance(position);
-
-
                 return fragment;
             }
         }
@@ -84,8 +77,6 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
     public void updateMaxes(View v){
         //get the maxes from the view and put them in the ShareadPreferences
-
-
         ViewGroup setupLayout = (ViewGroup) this.findViewById(R.id.setup_layout);
 
         TextView tv = (TextView) setupLayout.findViewById(R.id.bench_max);
@@ -112,13 +103,16 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
                 if (arg.getInt("pageNum")==1){
                     android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                     ft.detach(fragment).attach(fragment).commit();
-
                 }
             } catch (NullPointerException e) {
 
             }
         }
 
+    }
+    public void finishWeek(View v){
+        Intent intent = new Intent(this,FinishWeekActivity.class);
+        startActivity(intent);
 
     }
 }

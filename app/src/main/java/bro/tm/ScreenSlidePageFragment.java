@@ -42,8 +42,6 @@ public class ScreenSlidePageFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-
-        //get the plan and transform create the layout based on it for it and add it to the view
         plan plan = new plan(prefs);
         for(Workout workout : plan.getWeek1().workouts){
 
@@ -51,6 +49,8 @@ public class ScreenSlidePageFragment extends Fragment {
             row.setBackgroundResource(R.drawable.customborder);
             TextView workoutDay = (TextView)row.findViewById(R.id.workout_day);
             workoutDay.setText(workout.day);
+            workoutDay.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            workoutDay.setTextColor(Color.BLACK);
             rootView.addView(row);
 
             for(Exercise exercise : workout.exercises){
@@ -58,7 +58,7 @@ public class ScreenSlidePageFragment extends Fragment {
                 LinearLayout setView = new LinearLayout(this.getContext());
                 setView.setOrientation((LinearLayout.HORIZONTAL));
                 setView.setLayoutParams(new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
-
+                setView.setBackgroundResource(R.drawable.set_border);
                 SingleLineTextView setName = new SingleLineTextView(this.getContext());
 
                 setName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT,0.2f));
@@ -82,7 +82,7 @@ public class ScreenSlidePageFragment extends Fragment {
                     SingleLineTextView setReps = (SingleLineTextView) setXRepsLayout.findViewById(R.id.set_rep);
 
                     setWeight.setText(set.Weight);
-                    setReps.setText("x "+set.Reps);
+                    setReps.setText("x"+set.Reps);
 
                     setReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
                     setWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);

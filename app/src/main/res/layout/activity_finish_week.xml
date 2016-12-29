@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/finish_week_layout">
+
+    <TextView
+        android:text="Did you finish your reps?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
+
+    <Switch
+        android:text="Squat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/squat_switch" />
+
+    <Switch
+        android:text="Deadlift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/deadlift_switch" />
+
+    <Switch
+        android:text="Bench"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bench_switch" />
+
+    <Button
+        android:text="Save and Finish week"
+        android:onClick="weekFinishedConfirmed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2" />
+</LinearLayout>

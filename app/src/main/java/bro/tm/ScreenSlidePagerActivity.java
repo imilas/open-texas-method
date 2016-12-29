@@ -1,9 +1,11 @@
 package bro.tm;
 
 import android.app.FragmentTransaction;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -23,6 +25,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.WeeklyMaxLogsHelper;
+
 public class ScreenSlidePagerActivity extends FragmentActivity {
 
     private static final int NUM_PAGES = 2;
@@ -31,10 +35,12 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
-
-
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);

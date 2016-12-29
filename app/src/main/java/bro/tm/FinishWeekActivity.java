@@ -1,13 +1,17 @@
 package bro.tm;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.Switch;
+
+import models.WeeklyMaxLogsHelper;
 
 /**
  * Created by root on 28/12/16.
@@ -34,6 +38,16 @@ public class FinishWeekActivity extends FragmentActivity {
         double benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
         double squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
         double deadLiftMax = Double.parseDouble(prefs.getString("deadlift_max", "300"));
+
+        WeeklyMaxLogsHelper logs = new WeeklyMaxLogsHelper(this);
+        SQLiteDatabase db = logs.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("Squat", squatMax);
+        values.put("Bench", benchMax);
+        values.put("Deadlift", deadLiftMax);
+
+        long newRowId = db.insert("logs", null, values);
 
         if(rb.isChecked()){
             editor.putString("bench_max",String.valueOf(benchMax+5));

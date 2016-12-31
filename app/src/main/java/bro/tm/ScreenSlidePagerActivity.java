@@ -14,16 +14,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.androidplot.*;
-import com.androidplot.util.PixelUtils;
-import com.androidplot.xy.CatmullRomInterpolator;
-import com.androidplot.xy.LineAndPointFormatter;
-import com.androidplot.xy.SimpleXYSeries;
-import com.androidplot.xy.XYPlot;
-import com.androidplot.xy.XYSeries;
-
-
-
 import java.util.Arrays;
 
 import static bro.tm.R.id.plot;
@@ -45,8 +35,6 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
-
-
 
     }
 
@@ -100,7 +88,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
         editor.putString("bench_max",benchMax);
         editor.putString("squat_max",squatMax);
-        editor.putString("dead_lift_max",deadLiftMax);
+        editor.putString("deadlift_max",deadLiftMax);
 
 
         editor.commit();

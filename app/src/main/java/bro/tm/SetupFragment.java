@@ -14,12 +14,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.androidplot.util.PixelUtils;
+import com.androidplot.xy.BoundaryMode;
 import com.androidplot.xy.CatmullRomInterpolator;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.StepMode;
+import com.androidplot.xy.XYGraphWidget;
 import com.androidplot.xy.XYPlot;
 import com.androidplot.xy.XYSeries;
 
+import java.text.FieldPosition;
+import java.text.Format;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -44,7 +50,7 @@ public class SetupFragment extends Fragment {
         TextView v = (TextView) rootView.findViewById(R.id.squat_max);
         v.setText(prefs.getString("squat_max","0"));
         v = (TextView) rootView.findViewById(R.id.dead_lift_max);
-        v.setText(prefs.getString("dead_lift_max","0"));
+        v.setText(prefs.getString("deadlift_max","0"));
         v = (TextView) rootView.findViewById(R.id.bench_max);
         v.setText(prefs.getString("bench_max","0"));
 
@@ -66,7 +72,7 @@ public class SetupFragment extends Fragment {
         "select * from logs",null);
 
         // create a couple arrays of y-values to plot:
-        final Number[] domainLabels = {1, 2, 3, 6, 7, 8, 9, 10, 13, 14};
+        final Number[] domainLabels = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         ArrayList series1Numbers = new ArrayList<Double>();
         ArrayList series2Numbers = new ArrayList<Double>();
         ArrayList series3Numbers = new ArrayList<Double>();
@@ -79,12 +85,9 @@ public class SetupFragment extends Fragment {
             cursor.moveToNext();
         }
 
-        XYSeries series1 = new SimpleXYSeries(
-                series1Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series1");
-        XYSeries series2 = new SimpleXYSeries(
-                series2Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series2");
-        XYSeries series3 = new SimpleXYSeries(
-                series3Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series3");
+        XYSeries series1 = new SimpleXYSeries(series1Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "squats");
+        XYSeries series2 = new SimpleXYSeries(series2Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "deadlift");
+        XYSeries series3 = new SimpleXYSeries(series3Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "benchpress");
 
         // create formatters to use for drawing a series using LineAndPointRenderer
         // and configure them from xml:
@@ -97,26 +100,13 @@ public class SetupFragment extends Fragment {
         LineAndPointFormatter series3Format =
                 new LineAndPointFormatter(this.getActivity(), R.xml.asdf);
 
-        PixelUtils.init(this.getActivity());
-        // add an "dash" effect to the series2 line:
-        series2Format.getLinePaint().setPathEffect(new DashPathEffect(new float[] {
-                PixelUtils.dpToPix(20),
-                PixelUtils.dpToPix(15)}, 0));
-
-        // just for fun, add some smoothing to the lines:
-        // see: http://androidplot.com/smooth-curves-and-androidplot/
-        series1Format.setInterpolationParams(
-                new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
-
-        series2Format.setInterpolationParams(
-                new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
-        series3Format.setInterpolationParams(
-                new CatmullRomInterpolator.Params(10, CatmullRomInterpolator.Type.Centripetal));
+        plot.setDomainStep(StepMode.INCREMENT_BY_VAL,1);
 
         // add a new series' to the xyplot:
         plot.addSeries(series1, series1Format);
         plot.addSeries(series2, series2Format);
         plot.addSeries(series3, series3Format);
+
 
         //return root
 

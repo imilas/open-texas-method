@@ -1,81 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/setup_layout">
+    android:fillViewport="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:ap="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical" android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/setup_layout">
 
-        <TextView
-            android:text="Squaties"
-            android:layout_width="0dp"
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="30sp" />
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:text="Squaties"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/squat_max"
+                android:text="TextView"
+                android:inputType="phone"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:layout_weight="2"
+                android:layout_width="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:text="DeadLift Max"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="30sp" />
+            <EditText
+                android:id="@+id/bench_max"
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:text="Bench Max"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="30sp" />
+
 
         <EditText
-            android:id="@+id/squat_max"
-            android:text="TextView"
-            android:inputType="phone"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:layout_weight="2"
-            android:layout_width="0dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
-
-        <TextView
-            android:text="DeadLift Max"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="30sp" />
-        <EditText
-            android:id="@+id/bench_max"
+            android:id="@+id/dead_lift_max"
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="30sp"/>
-    </LinearLayout>
+            android:textSize="30sp"
+            />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
 
-        <TextView
-            android:text="Bench Max"
-            android:layout_width="0dp"
+        <Button
+            android:text="Save Maxes"
+            android:onClick="updateMaxes"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="30sp" />
+            android:id="@+id/update_max" />
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:ap="http://schemas.android.com/apk/res-auto"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
-    <EditText
-        android:id="@+id/dead_lift_max"
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        />
+            <com.androidplot.xy.XYPlot
+                style="@style/APDefacto.Dark"
+                android:id="@+id/plot"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:minWidth="150dp"
+                android:minHeight="300dp"
+                ap:title="A Simple XY Plot"
+                ap:rangeTitle="range"
+                ap:domainTitle="domain"
+                ap:lineLabels="left|bottom"
+                ap:lineLabelRotationBottom="-45"/>
         </LinearLayout>
 
+    </LinearLayout>
 
-    <Button
-        android:text="Save Maxes"
-        android:onClick="updateMaxes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/update_max" />
-
-</LinearLayout>
+    </ScrollView>

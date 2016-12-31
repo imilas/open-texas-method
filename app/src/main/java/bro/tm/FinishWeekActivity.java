@@ -4,12 +4,22 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.DashPathEffect;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.Switch;
+
+import com.androidplot.util.PixelUtils;
+import com.androidplot.xy.CatmullRomInterpolator;
+import com.androidplot.xy.LineAndPointFormatter;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYPlot;
+import com.androidplot.xy.XYSeries;
+
+import java.util.Arrays;
 
 import models.WeeklyMaxLogsHelper;
 
@@ -23,6 +33,8 @@ public class FinishWeekActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_week);
+
+
     }
 
     public void weekFinishedConfirmed(View v){
@@ -43,9 +55,7 @@ public class FinishWeekActivity extends FragmentActivity {
         SQLiteDatabase db = logs.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("Squat", squatMax);
-        values.put("Bench", benchMax);
-        values.put("Deadlift", deadLiftMax);
+
 
         long newRowId = db.insert("logs", null, values);
 
@@ -59,6 +69,12 @@ public class FinishWeekActivity extends FragmentActivity {
             editor.putString("dead_lift_max",String.valueOf(deadLiftMax+5));
         }
         editor.commit();
+
+
+
+
+
+
         this.finish();
 
     }

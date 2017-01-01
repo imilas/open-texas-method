@@ -19,6 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/set_rep"
-        android:background="@android:color/holo_red_light"
+        android:background="@android:color/holo_orange_light"
         android:gravity="center"/>
 </LinearLayout>

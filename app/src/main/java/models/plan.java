@@ -33,8 +33,11 @@ public class plan {
         double benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
         double squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
         double liftMax = Double.parseDouble(prefs.getString("deadlift_max", "300"));
+        double deadliftIncrement = Double.parseDouble(prefs.getString("deadlift_increment", "5"));
+        double squatIncrement = Double.parseDouble(prefs.getString("squat_increment", "5"));
+        double benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
 
-        double fS=0.85;
+        double fS=0.87;
         double fB=0.8;
         double fL=0.9;
 
@@ -50,7 +53,7 @@ public class plan {
         Exercise exercise1 = new Exercise("squat",squatSetsMon);
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
-        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,0)));
+        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
         Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
 
         ArrayList<Set> benchSetsMon= new ArrayList<>();
@@ -66,8 +69,16 @@ public class plan {
         exercisesVol.add(exercise3);
         Workout volume=new Workout("Volume Day",exercisesVol);
 
-        //***Tuesday***
+        //***Wednesday***
 
+        //monday
+        ArrayList<Set> squatSetsWednesday= new ArrayList<>();
+        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
+        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
+        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
+        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
+        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
+        Exercise exercise7 = new Exercise("squat",squatSetsWednesday);
 
         ArrayList<Set> opt1SetsTue= new ArrayList<>();
         opt1SetsTue.add(new Set("10"," "));
@@ -91,7 +102,8 @@ public class plan {
         Exercise exercise6 = new Exercise(opt3,opt3SetsTue);
 
         ArrayList<Exercise>  exercisesTue=new ArrayList<Exercise>();
-        exercisesTue.add(exercise3);
+
+        exercisesTue.add(exercise7);
         exercisesTue.add(exercise4);
         exercisesTue.add(exercise5);
         exercisesTue.add(exercise6);
@@ -101,19 +113,21 @@ public class plan {
         //Intensity day
         //**********week1*******************
 
-        //monday
+        //friday usually
         ArrayList<Set> squatSetsIntense= new ArrayList<>();
-        squatSetsIntense.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
+        squatSetsIntense.add(new Set("5",calculateWeight(squatMax,1,unit,squatIncrement)));
         exercise1 = new Exercise("squat",squatSetsIntense);
 
         ArrayList<Set> liftSetsIntense= new ArrayList<>();
-        liftSetsIntense.add(new Set("5",calculateWeight(liftMax,fL,unit,0)));
+        liftSetsIntense.add(new Set("12",calculateWeight(liftMax,0.75,unit,0)));
+        liftSetsIntense.add(new Set("12",calculateWeight(liftMax,0.75,unit,0)));
+        liftSetsIntense.add(new Set("12",calculateWeight(liftMax,0.75,unit,0)));
         exercise2 = new Exercise("deadlift",liftSetsIntense);
 
         ArrayList<Set> benchSetsIntense= new ArrayList<>();
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,1,unit,benchIncrement)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,1,unit,benchIncrement)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,1,unit,benchIncrement)));
         exercise3 = new Exercise("bench",benchSetsIntense);
 
         exercisesVol=new ArrayList<Exercise>();

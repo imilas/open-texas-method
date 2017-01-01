@@ -75,23 +75,34 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         //get the maxes from the view and put them in the ShareadPreferences
         ViewGroup setupLayout = (ViewGroup) this.findViewById(R.id.setup_layout);
 
-        TextView tv = (TextView) setupLayout.findViewById(R.id.bench_max);
-        String benchMax =  tv.getText().toString();
-        tv = (TextView) setupLayout.findViewById(R.id.squat_max);
-        String squatMax =  tv.getText().toString();
-        tv = (TextView) setupLayout.findViewById(R.id.dead_lift_max);
-        String deadLiftMax =  tv.getText().toString();
-
         SharedPreferences prefs = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
+        //get new weights
+        TextView tv = (TextView) setupLayout.findViewById(R.id.bench_max);
+        String benchMax =  tv.getText().toString();
+        tv = (TextView) setupLayout.findViewById(R.id.squat_max);
+        String squatMax =  tv.getText().toString();
+        tv = (TextView) setupLayout.findViewById(R.id.deadlift_max);
+        String deadLiftMax =  tv.getText().toString();
+        //get new increments
+        tv = (TextView) setupLayout.findViewById(R.id.deadlift_increment);
+        String deadliftIncrement =  tv.getText().toString();
+        tv = (TextView) setupLayout.findViewById(R.id.squat_increment);
+        String squatIncrement =  tv.getText().toString();
+        tv = (TextView) setupLayout.findViewById(R.id.bench_increment);
+        String benchIncrement =  tv.getText().toString();
+
         editor.putString("bench_max",benchMax);
         editor.putString("squat_max",squatMax);
         editor.putString("deadlift_max",deadLiftMax);
-
-
+        editor.putString("deadlift_increment",deadliftIncrement);
+        editor.putString("squat_increment",squatIncrement);
+        editor.putString("bench_increment",benchIncrement);
         editor.commit();
+
+        //update the plan
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             try {
                 Bundle arg= fragment.getArguments();

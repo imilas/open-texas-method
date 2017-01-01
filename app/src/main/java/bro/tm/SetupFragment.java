@@ -49,11 +49,16 @@ public class SetupFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.setup_layout , container, false);
         TextView v = (TextView) rootView.findViewById(R.id.squat_max);
         v.setText(prefs.getString("squat_max","0"));
-        v = (TextView) rootView.findViewById(R.id.dead_lift_max);
+        v = (TextView) rootView.findViewById(R.id.deadlift_max);
         v.setText(prefs.getString("deadlift_max","0"));
         v = (TextView) rootView.findViewById(R.id.bench_max);
         v.setText(prefs.getString("bench_max","0"));
-
+        v = (TextView) rootView.findViewById(R.id.bench_increment);
+        v.setText(prefs.getString("bench_increment","0"));
+        v = (TextView) rootView.findViewById(R.id.squat_increment);
+        v.setText(prefs.getString("squat_increment","0"));
+        v = (TextView) rootView.findViewById(R.id.deadlift_increment);
+        v.setText(prefs.getString("deadlift_increment","0"));
 
         //draw the graph
 
@@ -63,11 +68,6 @@ public class SetupFragment extends Fragment {
         WeeklyMaxLogsHelper logs = new WeeklyMaxLogsHelper(this.getActivity());
         SQLiteDatabase db = logs.getReadableDatabase();
 
-        String[] projection = {
-                "squat_max",
-                "bench_max",
-                "deadlift_max"
-        };
         Cursor cursor = db.rawQuery(
         "select * from logs",null);
 

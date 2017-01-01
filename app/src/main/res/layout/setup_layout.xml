@@ -10,8 +10,33 @@
         android:orientation="vertical" android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/setup_layout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <TextView
+                android:text="Exercise"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <TextView
+                android:text="Current Max"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="Weekly Increment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
 
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,16 +48,19 @@
                 android:text="Squaties"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="30sp" />
-
+                android:layout_weight="1" />
             <EditText
                 android:id="@+id/squat_max"
-                android:text="TextView"
                 android:inputType="phone"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:layout_weight="2"
+                android:layout_weight="1"
+                android:layout_width="0dp" />
+
+            <EditText
+                android:id="@+id/squat_increment"
+                android:inputType="phone"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:layout_width="0dp" />
         </LinearLayout>
 
@@ -43,17 +71,24 @@
             android:weightSum="3">
 
             <TextView
-                android:text="DeadLift Max"
+                android:text="DeadLift"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="30sp" />
+                android:layout_weight="1" />
             <EditText
-                android:id="@+id/bench_max"
-                android:text="TextView"
-                android:layout_width="match_parent"
+                android:id="@+id/deadlift_max"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"/>
+                android:layout_weight="1"
+                android:layout_width="0dp"/>
+            <EditText
+                android:id="@+id/deadlift_increment"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -63,21 +98,26 @@
             android:weightSum="3">
 
             <TextView
-                android:text="Bench Max"
+                android:text="Bench"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <EditText
+                android:id="@+id/bench_max"
                 android:layout_weight="1"
-                android:textSize="30sp" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                />
+
+            <EditText
+                android:id="@+id/bench_increment"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
 
 
-        <EditText
-            android:id="@+id/dead_lift_max"
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            />
             </LinearLayout>
+
 
 
         <Button

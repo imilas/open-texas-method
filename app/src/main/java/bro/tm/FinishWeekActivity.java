@@ -50,6 +50,9 @@ public class FinishWeekActivity extends FragmentActivity {
         double benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
         double squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
         double deadLiftMax = Double.parseDouble(prefs.getString("deadlift_max", "420"));
+        double benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
+        double  deadliftIncrement= Double.parseDouble(prefs.getString("deadlift_increment", "5"));
+        double  squatIncrement= Double.parseDouble(prefs.getString("squat_increment", "5"));
 
         WeeklyMaxLogsHelper logs = new WeeklyMaxLogsHelper(this);
         SQLiteDatabase db = logs.getWritableDatabase();
@@ -62,13 +65,13 @@ public class FinishWeekActivity extends FragmentActivity {
         long newRowId = db.insert("logs", null, values);
 
         if(rb.isChecked()){
-            editor.putString("bench_max",String.valueOf(benchMax+5));
+            editor.putString("bench_max",String.valueOf(benchMax+benchIncrement));
         }
         if(rs.isChecked()){
-            editor.putString("squat_max", String.valueOf(squatMax+5));
+            editor.putString("squat_max", String.valueOf(squatMax+squatIncrement));
         }
         if(rd.isChecked()){
-            editor.putString("dead_lift_max",String.valueOf(deadLiftMax+5));
+            editor.putString("dead_lift_max",String.valueOf(deadLiftMax+deadliftIncrement));
         }
         editor.commit();
 

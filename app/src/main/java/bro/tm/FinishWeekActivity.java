@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.DashPathEffect;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,13 +72,11 @@ public class FinishWeekActivity extends FragmentActivity {
             editor.putString("squat_max", String.valueOf(squatMax+squatIncrement));
         }
         if(rd.isChecked()){
-            editor.putString("dead_lift_max",String.valueOf(deadLiftMax+deadliftIncrement));
+            editor.putString("deadlift_max",String.valueOf(deadLiftMax+deadliftIncrement));
         }
         editor.commit();
 
-
-
-
+        //update the plan
 
 
         this.finish();

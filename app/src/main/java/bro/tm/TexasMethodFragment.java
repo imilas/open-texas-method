@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import models.Exercise;
@@ -19,14 +18,12 @@ import models.Set;
 import models.Workout;
 import models.plan;
 
-import static android.support.design.R.id.center;
-import static android.support.design.R.id.center_horizontal;
 import static android.widget.LinearLayout.LayoutParams.*;
 
-public class ScreenSlidePageFragment extends Fragment {
+public class TexasMethodFragment extends Fragment {
 
-    public static ScreenSlidePageFragment newInstance(int position){
-        ScreenSlidePageFragment thisFragment= new ScreenSlidePageFragment();
+    public static TexasMethodFragment newInstance(int position){
+        TexasMethodFragment thisFragment= new TexasMethodFragment();
         Bundle args = new Bundle();
         args.putInt("pageNum", position);
         thisFragment.setArguments(args);

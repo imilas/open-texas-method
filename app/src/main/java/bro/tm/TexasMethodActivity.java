@@ -3,7 +3,6 @@ package bro.tm;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.DashPathEffect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,11 +13,11 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import java.util.Arrays;
 
-import static bro.tm.R.id.plot;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ScreenSlidePagerActivity extends FragmentActivity {
+public class TexasMethodActivity extends FragmentActivity {
 
     private static final int NUM_PAGES = 2;
     private ViewPager mPager;
@@ -60,7 +59,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
             if (position == 0){
                 return new SetupFragment().newInstance();
             }else{
-                Fragment fragment = new ScreenSlidePageFragment().newInstance(position);
+                Fragment fragment = new TexasMethodFragment().newInstance(position);
                 return fragment;
             }
         }
@@ -103,24 +102,36 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         editor.commit();
 
         //update the plan
-        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-            try {
-                Bundle arg= fragment.getArguments();
-                int pageNum=arg.getInt("pageNum");
-                if (arg.getInt("pageNum")==1){
-                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.detach(fragment).attach(fragment).commit();
-                }
-            } catch (NullPointerException e) {
-
-            }
-        }
+        rebuild();
 
     }
     public void finishWeek(View v){
         Intent intent = new Intent(this,FinishWeekActivity.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        rebuild();
+
+    }
+
+    public void rebuild(){
+        List<Fragment> fragies =getSupportFragmentManager().getFragments();
+        if(fragies!=null){
+            for (Fragment fragment : fragies) {
+                try {
+                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.detach(fragment).attach(fragment).commit();
+
+                } catch (NullPointerException e) {
+
+                }
+            }
+
+        }
     }
 }
 

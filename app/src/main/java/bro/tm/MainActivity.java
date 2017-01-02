@@ -8,7 +8,7 @@ public class MainActivity extends FragmentActivity{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(this,TexasMethodActivity.class);
+        Intent intent = new Intent(this,TimerActivity.class);
         startActivity(intent);
     }
 

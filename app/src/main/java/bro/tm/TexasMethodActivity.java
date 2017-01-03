@@ -57,10 +57,11 @@ public class TexasMethodActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 0){
-                return new SetupFragment().newInstance();
-            }else{
-                Fragment fragment = new TexasMethodFragment().newInstance(position);
+                Fragment fragment = new TexasMethodFragment().newInstance(1);
                 return fragment;
+            }else{
+
+                return new SetupFragment().newInstance();
             }
         }
         @Override

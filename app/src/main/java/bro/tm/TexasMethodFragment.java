@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import me.grantland.widget.AutofitTextView;
 import models.Exercise;
 import models.Set;
 import models.Workout;
@@ -33,7 +34,7 @@ public class TexasMethodFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.fragment_screen_slide_page , container, false);
+        ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.plan_layout, container, false);
         LinearLayout rootView= (LinearLayout) planView.findViewById(R.id.content);
 
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
@@ -56,15 +57,16 @@ public class TexasMethodFragment extends Fragment {
                 setView.setOrientation((LinearLayout.HORIZONTAL));
                 setView.setLayoutParams(new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
                 setView.setBackgroundResource(R.drawable.set_border);
-                SingleLineTextView setName = new SingleLineTextView(this.getContext());
+                AutofitTextView setName = new AutofitTextView(this.getContext());
 
                 setName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT,0.2f));
 
 
                 setName.setGravity(Gravity.CENTER);
                 setName.setText(exercise.exerciseName);
-                setName.setTextSize(TypedValue.COMPLEX_UNIT_SP,25);
+                setName.setTextSize(TypedValue.COMPLEX_UNIT_SP,22);
                 setName.setBackgroundColor(Color.GREEN);
+                setName.setBackgroundColor(Color.parseColor("#adccff"));
                 setView.addView(setName);
 
                 LinearLayout numberContainer = new LinearLayout(this.getContext());
@@ -75,15 +77,14 @@ public class TexasMethodFragment extends Fragment {
                     ViewGroup setXRepsLayout = (ViewGroup) inflater.inflate(R.layout.set_x_rep_layout, container, false);
                     setXRepsLayout.setLayoutParams(new LayoutParams(WRAP_CONTENT,WRAP_CONTENT,1f));
 
-                    SingleLineTextView setWeight = (SingleLineTextView) setXRepsLayout.findViewById(R.id.set_weight);
-                    SingleLineTextView setReps = (SingleLineTextView) setXRepsLayout.findViewById(R.id.set_rep);
-
+                    AutofitTextView setWeight = (AutofitTextView) setXRepsLayout.findViewById(R.id.set_weight);
+                    AutofitTextView setReps = (AutofitTextView) setXRepsLayout.findViewById(R.id.set_rep);
                     setWeight.setText(set.Weight);
                     setReps.setText("x"+set.Reps);
 
-                    setReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-                    setWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+                    setReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
 
+                    setWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
                     numberContainer.addView(setXRepsLayout);
                 }
                 setView.addView(numberContainer);

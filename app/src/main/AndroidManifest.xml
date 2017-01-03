@@ -11,18 +11,24 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"
-                    android:windowSoftInputMode="stateHidden"/>
 
+
+
+        <activity android:name=".TexasMethodActivity"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TexasMethodActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".FinishWeekActivity"></activity>
-        <activity android:name=".TimerActivity"></activity>
+
+        <activity android:name=".FinishWeekActivity">
+        </activity>
+
+        <activity android:name=".TimerActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+        </activity>
+
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
 
-    <bro.tm.SingleLineTextView
+    <me.grantland.widget.AutofitTextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:background="@android:color/holo_blue_bright"
         android:gravity="center" />
 
-    <bro.tm.SingleLineTextView
+    <me.grantland.widget.AutofitTextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -78,11 +78,13 @@
             <EditText
                 android:id="@+id/deadlift_max"
                 android:layout_height="wrap_content"
+                android:inputType="phone"
                 android:layout_weight="1"
                 android:layout_width="0dp"/>
             <EditText
                 android:id="@+id/deadlift_increment"
                 android:layout_weight="1"
+                android:inputType="phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
@@ -105,6 +107,7 @@
             <EditText
                 android:id="@+id/bench_max"
                 android:layout_weight="1"
+                android:inputType="phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 />
@@ -112,13 +115,10 @@
             <EditText
                 android:id="@+id/bench_increment"
                 android:layout_weight="1"
+                android:inputType="phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
-
-
             </LinearLayout>
-
-
 
         <Button
             android:text="Save Maxes"

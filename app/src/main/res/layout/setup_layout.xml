@@ -127,24 +127,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/update_max" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:ap="http://schemas.android.com/apk/res-auto"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
-
-            <com.androidplot.xy.XYPlot
-                style="@style/APDefacto.Dark"
-                android:id="@+id/plot"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:minWidth="150dp"
-                android:minHeight="300dp"
-                ap:title="A Simple XY Plot"
-                ap:rangeTitle="range"
-                ap:domainTitle="domain"
-                ap:lineLabels="left|bottom"
-                ap:lineLabelRotationBottom="-45"/>
-        </LinearLayout>
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:id="@+id/graph" />
 
     </LinearLayout>
 

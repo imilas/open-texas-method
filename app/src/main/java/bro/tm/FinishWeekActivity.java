@@ -13,12 +13,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.Switch;
 
-import com.androidplot.util.PixelUtils;
-import com.androidplot.xy.CatmullRomInterpolator;
-import com.androidplot.xy.LineAndPointFormatter;
-import com.androidplot.xy.SimpleXYSeries;
-import com.androidplot.xy.XYPlot;
-import com.androidplot.xy.XYSeries;
+
 
 import java.util.Arrays;
 

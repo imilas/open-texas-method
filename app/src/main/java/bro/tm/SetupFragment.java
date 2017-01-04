@@ -13,15 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.androidplot.util.PixelUtils;
-import com.androidplot.xy.BoundaryMode;
-import com.androidplot.xy.CatmullRomInterpolator;
-import com.androidplot.xy.LineAndPointFormatter;
-import com.androidplot.xy.SimpleXYSeries;
-import com.androidplot.xy.StepMode;
-import com.androidplot.xy.XYGraphWidget;
-import com.androidplot.xy.XYPlot;
-import com.androidplot.xy.XYSeries;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.FieldPosition;
 import java.text.Format;
@@ -60,9 +54,7 @@ public class SetupFragment extends Fragment {
         v = (TextView) rootView.findViewById(R.id.deadlift_increment);
         v.setText(prefs.getString("deadlift_increment","0"));
 
-        //draw the graph
 
-        XYPlot plot = (XYPlot) rootView.findViewById(R.id.plot);
 
         //get the values from database
         WeeklyMaxLogsHelper logs = new WeeklyMaxLogsHelper(this.getActivity());
@@ -70,42 +62,42 @@ public class SetupFragment extends Fragment {
 
         Cursor cursor = db.rawQuery(
         "select * from logs",null);
+        //draw the graph
 
-        // create a couple arrays of y-values to plot:
-        final Number[] domainLabels = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        ArrayList series1Numbers = new ArrayList<Double>();
-        ArrayList series2Numbers = new ArrayList<Double>();
-        ArrayList series3Numbers = new ArrayList<Double>();
+        GraphView graph = (GraphView) rootView.findViewById(R.id.graph);
 
         cursor.moveToFirst();
+
+
+        LineGraphSeries<DataPoint> series1 = new LineGraphSeries<DataPoint>();
+        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<DataPoint>();
+        LineGraphSeries<DataPoint> series3 = new LineGraphSeries<DataPoint>();
+
         while(!cursor.isAfterLast()){
-            series1Numbers.add(cursor.getDouble(0));
-            series2Numbers.add(cursor.getDouble(1));
-            series3Numbers.add(cursor.getDouble(2));
+            series1.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(0)),true,6);
+            series2.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(1)),true,6);
+            series3.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(2)),true,6);
+
             cursor.moveToNext();
         }
+        graph.addSeries(series1);
+        graph.addSeries(series2);
+        graph.addSeries(series3);
 
-        XYSeries series1 = new SimpleXYSeries(series1Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "squats");
-        XYSeries series2 = new SimpleXYSeries(series2Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "deadlift");
-        XYSeries series3 = new SimpleXYSeries(series3Numbers, SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "benchpress");
 
-        // create formatters to use for drawing a series using LineAndPointRenderer
-        // and configure them from xml:
-        LineAndPointFormatter series1Format =
-                new LineAndPointFormatter(this.getActivity(), R.xml.line_point_formatter_with_labels);
+        // activate horizontal zooming and scrolling
+        graph.getViewport().setScalable(true);
 
-        LineAndPointFormatter series2Format =
-                new LineAndPointFormatter(this.getActivity(), R.xml.line_point_formatter_with_labels_2);
+// activate horizontal scrolling
+        graph.getViewport().setScrollable(true);
 
-        LineAndPointFormatter series3Format =
-                new LineAndPointFormatter(this.getActivity(), R.xml.asdf);
+// activate horizontal and vertical zooming and scrolling
+        graph.getViewport().setScalableY(true);
 
-        plot.setDomainStep(StepMode.INCREMENT_BY_VAL,1);
+// activate vertical scrolling
+        graph.getViewport().setScrollableY(true);
 
-        // add a new series' to the xyplot:
-        plot.addSeries(series1, series1Format);
-        plot.addSeries(series2, series2Format);
-        plot.addSeries(series3, series3Format);
+
 
 
         //return root

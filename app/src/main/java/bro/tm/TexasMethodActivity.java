@@ -1,23 +1,25 @@
 package bro.tm;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TexasMethodActivity extends FragmentActivity {
+public class TexasMethodActivity extends AppCompatActivity{
 
     private static final int NUM_PAGES = 2;
     private ViewPager mPager;
@@ -26,15 +28,17 @@ public class TexasMethodActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        final ActionBar actionBar = getActionBar();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
-
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsies);
+        tabLayout.setupWithViewPager(mPager);
     }
 
     @Override

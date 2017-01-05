@@ -1,6 +1,7 @@
 package bro.tm;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 
 import java.util.List;
 
@@ -44,11 +44,8 @@ public class TexasMethodActivity extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
-            // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
     }
@@ -61,13 +58,25 @@ public class TexasMethodActivity extends AppCompatActivity{
         @Override
         public Fragment getItem(int position) {
             if (position == 0){
-                Fragment fragment = new TexasMethodFragment().newInstance(1);
+                Fragment fragment = new TexasMethodFragment().newInstance();
+
                 return fragment;
             }else{
-
                 return new SetupFragment().newInstance();
             }
         }
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+            if (position == 0) {
+                // if position is zero, set the title to RECEIVED.
+                return "Plan";
+            } else {
+                // if position is 1, set the title to SENT.
+                return "Setup";
+            }
+        }
+
         @Override
         public int getCount() {
             return NUM_PAGES;

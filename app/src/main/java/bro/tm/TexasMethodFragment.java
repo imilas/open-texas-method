@@ -23,11 +23,8 @@ import static android.widget.LinearLayout.LayoutParams.*;
 
 public class TexasMethodFragment extends Fragment {
 
-    public static TexasMethodFragment newInstance(int position){
+    public static TexasMethodFragment newInstance(){
         TexasMethodFragment thisFragment= new TexasMethodFragment();
-        Bundle args = new Bundle();
-        args.putInt("pageNum", position);
-        thisFragment.setArguments(args);
         return thisFragment;
 
     }

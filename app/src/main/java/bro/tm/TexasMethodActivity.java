@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -21,14 +22,12 @@ import java.util.List;
 
 public class TexasMethodActivity extends AppCompatActivity{
 
-    private static final int NUM_PAGES = 2;
+    private static final int NUM_PAGES =3;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        final ActionBar actionBar = getActionBar();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
@@ -50,30 +49,37 @@ public class TexasMethodActivity extends AppCompatActivity{
         }
     }
 
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+    private class ScreenSlidePagerAdapter extends FragmentPagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
+        }
+
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
         }
 
         @Override
         public Fragment getItem(int position) {
             if (position == 0){
-                Fragment fragment = new TexasMethodFragment().newInstance();
+                return  new TexasMethodFragment().newInstance();
 
-                return fragment;
-            }else{
+
+            }else if(position==1){
                 return new SetupFragment().newInstance();
+
             }
+            return new LogsFragment().newInstance();
+
         }
         @Override
         public CharSequence getPageTitle(int position) {
 
             if (position == 0) {
-                // if position is zero, set the title to RECEIVED.
                 return "Plan";
-            } else {
-                // if position is 1, set the title to SENT.
+            } else if(position==1) {
                 return "Setup";
+            }else{
+                return "logs";
             }
         }
 
@@ -116,36 +122,37 @@ public class TexasMethodActivity extends AppCompatActivity{
         editor.commit();
 
         //update the plan
-        rebuild();
+       rebuild();
 
     }
     public void finishWeek(View v){
         Intent intent = new Intent(this,FinishWeekActivity.class);
         startActivity(intent);
-
     }
 
     @Override
     public void onResume(){
         super.onResume();
         rebuild();
-
     }
 
     public void rebuild(){
-        List<Fragment> fragies =getSupportFragmentManager().getFragments();
-        if(fragies!=null){
-            for (Fragment fragment : fragies) {
-                try {
-                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.detach(fragment).attach(fragment).commit();
 
-                } catch (NullPointerException e) {
-
-                }
-            }
-
-        }
+        mPagerAdapter.notifyDataSetChanged();
+//        List<Fragment> fragies =getSupportFragmentManager().getFragments();
+//        if(fragies!=null){
+//            for (Fragment fragment : fragies) {
+//                try {
+//
+//                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//                    ft.detach(fragment).attach(fragment).commit();
+//
+//                } catch (NullPointerException e) {
+//
+//                }
+//            }
+//
+//        }
     }
 }
 

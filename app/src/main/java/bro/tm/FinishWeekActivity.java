@@ -56,8 +56,6 @@ public class FinishWeekActivity extends FragmentActivity {
         values.put("Squat", squatMax);
         values.put("Bench", benchMax);
         values.put("Deadlift", deadLiftMax);
-
-
         long newRowId = db.insert("logs", null, values);
 
         if(rb.isChecked()){

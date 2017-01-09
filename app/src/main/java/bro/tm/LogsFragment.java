@@ -2,14 +2,19 @@ package bro.tm;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.text.NumberFormat;
 
 import models.WeeklyMaxLogsHelper;
 
@@ -42,6 +47,25 @@ public class LogsFragment extends Fragment {
         LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>();
         LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>();
 
+        series1.setDrawDataPoints(true);
+        series2.setDrawDataPoints(true);
+        series3.setDrawDataPoints(true);
+
+        squatGraph.setTitle("Squats");
+        squatGraph.setTitleTextSize(80);
+        squatGraph.getGridLabelRenderer().setNumHorizontalLabels(cursor.getCount());
+
+        benchGraph.setTitle("Bench");
+        benchGraph.setTitleTextSize(80);
+        benchGraph.getGridLabelRenderer().setNumHorizontalLabels(cursor.getCount());
+
+        deadliftGraph.setTitle("Deadlift");
+        deadliftGraph.setTitleTextSize(80);
+        deadliftGraph.getGridLabelRenderer().setNumHorizontalLabels(cursor.getCount());
+
+        series1.setColor(Color.RED);
+        series2.setColor(Color.GREEN);
+
         while(!cursor.isAfterLast()){
             series1.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(0)),true,6);
             series2.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(1)),true,6);
@@ -57,6 +81,8 @@ public class LogsFragment extends Fragment {
         benchGraph.getViewport().setScrollable(true);
         benchGraph.getViewport().setScalableY(true);
         benchGraph.getViewport().setScrollableY(true);
+
+        series1.setDrawDataPoints(true);
 
         squatGraph.getViewport().setScalable(true);
         squatGraph.getViewport().setScrollable(true);

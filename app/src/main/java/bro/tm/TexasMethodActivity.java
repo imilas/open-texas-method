@@ -18,7 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
+
+import events.DatabaseUpdate;
 
 public class TexasMethodActivity extends AppCompatActivity{
 
@@ -62,21 +66,17 @@ public class TexasMethodActivity extends AppCompatActivity{
         public Fragment getItem(int position) {
             if (position == 0){
                 return  new TexasMethodFragment().newInstance();
-
-
             }else if(position==1){
-                return new SetupFragment().newInstance();
-
+                return new LogsFragment().newInstance();
             }
-            return new LogsFragment().newInstance();
-
+            return new SetupFragment().newInstance();
         }
         @Override
         public CharSequence getPageTitle(int position) {
 
             if (position == 0) {
                 return "Plan";
-            } else if(position==1) {
+            } else if(position == 1) {
                 return "Setup";
             }else{
                 return "logs";
@@ -139,6 +139,8 @@ public class TexasMethodActivity extends AppCompatActivity{
     public void rebuild(){
 
         mPagerAdapter.notifyDataSetChanged();
+
+        EventBus.getDefault().post(new DatabaseUpdate("Hello everyone!"));
 //        List<Fragment> fragies =getSupportFragmentManager().getFragments();
 //        if(fragies!=null){
 //            for (Fragment fragment : fragies) {

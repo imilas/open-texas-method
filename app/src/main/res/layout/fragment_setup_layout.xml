@@ -119,13 +119,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
             </LinearLayout>
-
-        <Button
-            android:text="Save Maxes"
-            android:onClick="updateMaxes"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/update_max" />
+            android:layout_height="wrap_content">
+            <Button
+                android:text="Set Current Max"
+                android:onClick="updateMaxes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/update_max" />
+            <Button
+                android:text="Finish Week"
+                android:onClick="finishWeek"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/finish_week"/>
+
+        </LinearLayout>
+
 
 
 

@@ -22,7 +22,7 @@ public class SetupFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.setup_layout , container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_setup_layout, container, false);
         TextView v = (TextView) rootView.findViewById(R.id.squat_max);
         v.setText(prefs.getString("squat_max","0"));
         v = (TextView) rootView.findViewById(R.id.deadlift_max);

@@ -31,7 +31,7 @@ public class TexasMethodFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.plan_layout, container, false);
+        ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.fragment_plan_layout, container, false);
         LinearLayout rootView= (LinearLayout) planView.findViewById(R.id.content);
 
         SharedPreferences prefs = this.getActivity().getSharedPreferences(

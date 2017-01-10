@@ -14,9 +14,13 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 
 
+import com.google.android.gms.wearable.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Arrays;
 
+import events.DatabaseUpdate;
 import models.WeeklyMaxLogsHelper;
 
 /**
@@ -68,9 +72,6 @@ public class FinishWeekActivity extends FragmentActivity {
             editor.putString("deadlift_max",String.valueOf(deadLiftMax+deadliftIncrement));
         }
         editor.commit();
-
-        //update the plan
-
 
         this.finish();
 

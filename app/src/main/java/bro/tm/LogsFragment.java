@@ -8,18 +8,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.jjoe64.graphview.DefaultLabelFormatter;
+import android.widget.Toast;
+import events.DatabaseUpdate;
+import com.google.android.gms.wearable.MessageEvent;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.text.NumberFormat;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import models.WeeklyMaxLogsHelper;
 
 
 public class LogsFragment extends Fragment {
+
 
     public static LogsFragment newInstance(){
         LogsFragment thisFragment = new LogsFragment();
@@ -27,7 +31,7 @@ public class LogsFragment extends Fragment {
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.logs_layout , container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_logs_layout, container, false);
 
         //get the values from database
         WeeklyMaxLogsHelper logs = new WeeklyMaxLogsHelper(this.getActivity());
@@ -94,6 +98,26 @@ public class LogsFragment extends Fragment {
         deadliftGraph.getViewport().setScalableY(true);
         deadliftGraph.getViewport().setScrollableY(true);
         return rootView;
+    }
+
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void DatabaseUpdate(DatabaseUpdate event) {
+        Toast.makeText(this.getActivity(), event.message, Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
     }
 
 }

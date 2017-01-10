@@ -37,7 +37,7 @@ public class TimerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.timer_layout);
+        setContentView(R.layout.activity_timer);
         timerTextView = (TextView) findViewById(R.id.timer_text);
     }
 

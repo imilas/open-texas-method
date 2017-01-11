@@ -1,7 +1,5 @@
 package bro.tm;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +8,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -20,13 +17,14 @@ import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.List;
-
 import events.DatabaseUpdate;
 
 public class TexasMethodActivity extends AppCompatActivity{
 
     private static final int NUM_PAGES =3;
+    public String logsTag="";
+    public String setupTag="";
+    public String planTag="";
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
 
@@ -39,9 +37,9 @@ public class TexasMethodActivity extends AppCompatActivity{
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsies);
         tabLayout.setupWithViewPager(mPager);
+
     }
 
     @Override
@@ -65,11 +63,15 @@ public class TexasMethodActivity extends AppCompatActivity{
         @Override
         public Fragment getItem(int position) {
             if (position == 0){
-                return  new TexasMethodFragment().newInstance();
+                return  new PlanFragment().newInstance();
             }else if(position==1){
+                return new SetupFragment().newInstance();
+            }else if(position==2){
                 return new LogsFragment().newInstance();
+            }else{
+                return null;
             }
-            return new SetupFragment().newInstance();
+
         }
         @Override
         public CharSequence getPageTitle(int position) {
@@ -81,6 +83,25 @@ public class TexasMethodActivity extends AppCompatActivity{
             }else{
                 return "logs";
             }
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
+            // get the tags set by FragmentPagerAdapter
+            switch (position) {
+                case 0:
+                    planTag = createdFragment.getTag();
+                    break;
+                case 1:
+                    setupTag = createdFragment.getTag();
+                    break;
+                case 2:
+                    logsTag = createdFragment.getTag();
+                    break;
+            }
+            // ... save the tags somewhere so you can reference them later
+            return createdFragment;
         }
 
         @Override
@@ -139,22 +160,9 @@ public class TexasMethodActivity extends AppCompatActivity{
     public void rebuild(){
 
         mPagerAdapter.notifyDataSetChanged();
+        EventBus.getDefault().post(new DatabaseUpdate("Plan refreshed!"));
 
-        EventBus.getDefault().post(new DatabaseUpdate("Hello everyone!"));
-//        List<Fragment> fragies =getSupportFragmentManager().getFragments();
-//        if(fragies!=null){
-//            for (Fragment fragment : fragies) {
-//                try {
-//
-//                    android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                    ft.detach(fragment).attach(fragment).commit();
-//
-//                } catch (NullPointerException e) {
-//
-//                }
-//            }
-//
-//        }
+
     }
 }
 

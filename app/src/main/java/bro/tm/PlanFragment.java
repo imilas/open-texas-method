@@ -21,10 +21,10 @@ import models.plan;
 
 import static android.widget.LinearLayout.LayoutParams.*;
 
-public class TexasMethodFragment extends Fragment {
+public class PlanFragment extends Fragment {
 
-    public static TexasMethodFragment newInstance(){
-        TexasMethodFragment thisFragment= new TexasMethodFragment();
+    public static PlanFragment newInstance(){
+        PlanFragment thisFragment= new PlanFragment();
         return thisFragment;
 
     }
@@ -36,7 +36,6 @@ public class TexasMethodFragment extends Fragment {
 
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
         plan plan = new plan(prefs);
         for(Workout workout : plan.getWeek1().workouts){
 
@@ -89,6 +88,8 @@ public class TexasMethodFragment extends Fragment {
             }
 
         }
+
+
         return planView;
     }
 

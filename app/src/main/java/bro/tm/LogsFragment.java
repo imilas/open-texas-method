@@ -100,24 +100,24 @@ public class LogsFragment extends Fragment {
         return rootView;
     }
 
-    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void DatabaseUpdate(DatabaseUpdate event) {
-        Toast.makeText(this.getActivity(), event.message, Toast.LENGTH_SHORT).show();
-    }
-
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
+//    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void DatabaseUpdate(DatabaseUpdate event) {
+//        Toast.makeText(this.getActivity(), event.message, Toast.LENGTH_SHORT).show();
+//    }
+//
+//
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        EventBus.getDefault().register(this);
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        EventBus.getDefault().unregister(this);
+//        super.onStop();
+//    }
 
 }

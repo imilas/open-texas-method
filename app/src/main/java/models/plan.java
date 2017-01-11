@@ -37,9 +37,12 @@ public class plan {
         double squatIncrement = Double.parseDouble(prefs.getString("squat_increment", "5"));
         double benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
 
-        double fS=0.87;
-        double fB=0.8;
-        double fL=0.9;
+        double frmFraction = 0.87;
+        double fS=0.87 * frmFraction ;
+        double fB=0.8 * frmFraction ;
+        double fL=0.9 * frmFraction;
+
+
 
         //**********week1*******************
 
@@ -115,7 +118,7 @@ public class plan {
 
         //friday usually
         ArrayList<Set> squatSetsIntense= new ArrayList<>();
-        squatSetsIntense.add(new Set("5",calculateWeight(squatMax,1,unit,squatIncrement)));
+        squatSetsIntense.add(new Set("5",calculateWeight(squatMax,frmFraction,unit,squatIncrement)));
         exercise1 = new Exercise("squat",squatSetsIntense);
 
         ArrayList<Set> liftSetsIntense= new ArrayList<>();
@@ -125,9 +128,9 @@ public class plan {
         exercise2 = new Exercise("deadlift",liftSetsIntense);
 
         ArrayList<Set> benchSetsIntense= new ArrayList<>();
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,1,unit,benchIncrement)));
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,1,unit,benchIncrement)));
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,1,unit,benchIncrement)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
         exercise3 = new Exercise("bench",benchSetsIntense);
 
         exercisesVol=new ArrayList<Exercise>();

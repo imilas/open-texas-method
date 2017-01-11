@@ -57,26 +57,28 @@ public class LogsFragment extends Fragment {
 
         squatGraph.setTitle("Squats");
         squatGraph.setTitleTextSize(80);
-        squatGraph.getGridLabelRenderer().setNumHorizontalLabels(cursor.getCount());
+        squatGraph.getGridLabelRenderer().setNumHorizontalLabels(8);
 
         benchGraph.setTitle("Bench");
         benchGraph.setTitleTextSize(80);
-        benchGraph.getGridLabelRenderer().setNumHorizontalLabels(cursor.getCount());
+        benchGraph.getGridLabelRenderer().setNumHorizontalLabels(8);
 
         deadliftGraph.setTitle("Deadlift");
         deadliftGraph.setTitleTextSize(80);
-        deadliftGraph.getGridLabelRenderer().setNumHorizontalLabels(cursor.getCount());
+        deadliftGraph.getGridLabelRenderer().setNumHorizontalLabels(8);
+        
 
         series1.setColor(Color.RED);
         series2.setColor(Color.GREEN);
 
         while(!cursor.isAfterLast()){
-            series1.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(0)),true,6);
-            series2.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(1)),true,6);
-            series3.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(2)),true,6);
+            series1.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(0)),true,cursor.getCount());
+            series2.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(1)),true,cursor.getCount());
+            series3.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(2)),true,cursor.getCount());
 
             cursor.moveToNext();
         }
+
         benchGraph.addSeries(series1);
         deadliftGraph.addSeries(series2);
         squatGraph.addSeries(series3);

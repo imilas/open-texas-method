@@ -134,12 +134,19 @@ public class TexasMethodActivity extends AppCompatActivity{
         tv = (TextView) setupLayout.findViewById(R.id.bench_increment);
         String benchIncrement =  tv.getText().toString();
 
+        tv = (TextView) setupLayout.findViewById(R.id.ohp_max);
+        String ohpMax =  tv.getText().toString();
+        tv = (TextView) setupLayout.findViewById(R.id.ohp_increment);
+        String ohpIncrement =  tv.getText().toString();
+
         editor.putString("bench_max",benchMax);
         editor.putString("squat_max",squatMax);
         editor.putString("deadlift_max",deadLiftMax);
         editor.putString("deadlift_increment",deadliftIncrement);
         editor.putString("squat_increment",squatIncrement);
         editor.putString("bench_increment",benchIncrement);
+        editor.putString("ohp_max",ohpMax);
+        editor.putString("ohp_increment",ohpIncrement);
         editor.commit();
 
         //update the plan

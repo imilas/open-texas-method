@@ -3,15 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content">
-
-
     <me.grantland.widget.AutofitTextView
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/set_weight"
 
-        android:background="@android:color/holo_blue_bright"
+        android:background="@color/set_color"
         android:gravity="center" />
 
     <me.grantland.widget.AutofitTextView
@@ -19,6 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/set_rep"
-        android:background="@android:color/holo_orange_light"
+        android:background="@color/rep_color"
         android:gravity="center"/>
 </LinearLayout>

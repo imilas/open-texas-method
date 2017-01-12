@@ -36,17 +36,19 @@ public class plan {
         double deadliftIncrement = Double.parseDouble(prefs.getString("deadlift_increment", "5"));
         double squatIncrement = Double.parseDouble(prefs.getString("squat_increment", "5"));
         double benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
+        double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
+        double ohpIncrement = Double.parseDouble(prefs.getString("ohp_increment", "5"));
 
-        double frmFraction = 0.87;
+        double frmFraction = 0.87; //five rep max fraction
         double fS=0.87 * frmFraction ;
-        double fB=0.8 * frmFraction ;
+        double fB=0.85 * frmFraction ;
         double fL=0.9 * frmFraction;
 
 
 
         //**********week1*******************
 
-        //monday
+        //Volume
         ArrayList<Set> squatSetsMon= new ArrayList<>();
         squatSetsMon.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
         squatSetsMon.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
@@ -55,10 +57,6 @@ public class plan {
         squatSetsMon.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
         Exercise exercise1 = new Exercise("squat",squatSetsMon);
 
-        ArrayList<Set> liftSetsMon= new ArrayList<>();
-        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
-        Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
-
         ArrayList<Set> benchSetsMon= new ArrayList<>();
         benchSetsMon.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
         benchSetsMon.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
@@ -66,42 +64,39 @@ public class plan {
         benchSetsMon.add(new Set("5",calculateWeight(benchMax,fB,unit,0)));
         Exercise exercise3 = new Exercise("bench",benchSetsMon);
 
+        ArrayList<Set> liftSetsMon= new ArrayList<>();
+        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
+        Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
+
         ArrayList<Exercise>  exercisesVol=new ArrayList<Exercise>();
         exercisesVol.add(exercise1);
         exercisesVol.add(exercise2);
         exercisesVol.add(exercise3);
         Workout volume=new Workout("Volume Day",exercisesVol);
 
-        //***Wednesday***
+        //***Wednesday********************
 
-        //monday
         ArrayList<Set> squatSetsWednesday= new ArrayList<>();
-        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
-        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
-        squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
         squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
         squatSetsWednesday.add(new Set("5",calculateWeight(squatMax,fS*0.9,unit,0)));
         Exercise exercise7 = new Exercise("squat",squatSetsWednesday);
 
-        ArrayList<Set> opt1SetsTue= new ArrayList<>();
-        opt1SetsTue.add(new Set("10"," "));
-        opt1SetsTue.add(new Set("10"," "));
-        opt1SetsTue.add(new Set("8"," "));
-        opt1SetsTue.add(new Set("6"," "));
-        Exercise exercise4 = new Exercise(opt1,opt1SetsTue);
+        ArrayList<Set> ohpSetsTue= new ArrayList<>();
+        ohpSetsTue.add(new Set("8",calculateWeight(ohpMax,fB*0.7,unit,0)));
+        ohpSetsTue.add(new Set("8",calculateWeight(ohpMax,fB*0.7,unit,0)));
+        ohpSetsTue.add(new Set("8",calculateWeight(ohpMax,fB*0.7,unit,0)));
+        Exercise exercise4 = new Exercise("ohp",ohpSetsTue);
 
         ArrayList<Set> opt2SetsTue= new ArrayList<>();
         opt2SetsTue.add(new Set("12"," "));
         opt2SetsTue.add(new Set("12"," "));
-        opt2SetsTue.add(new Set("10"," "));
-        opt2SetsTue.add(new Set("8"," "));
+        opt2SetsTue.add(new Set("12"," "));
         Exercise exercise5 = new Exercise(opt2,opt2SetsTue);
 
         ArrayList<Set> opt3SetsTue= new ArrayList<>();
         opt3SetsTue.add(new Set("12"," "));
         opt3SetsTue.add(new Set("12"," "));
-        opt3SetsTue.add(new Set("10"," "));
-        opt3SetsTue.add(new Set("8"," "));
+        opt3SetsTue.add(new Set("12"," "));
         Exercise exercise6 = new Exercise(opt3,opt3SetsTue);
 
         ArrayList<Exercise>  exercisesTue=new ArrayList<Exercise>();
@@ -113,13 +108,15 @@ public class plan {
 
         Workout reovery=new Workout("Recovery Day",exercisesTue);
 
-        //Intensity day
-        //**********week1*******************
-
-        //friday usually
+        //Intensity day***************************************
         ArrayList<Set> squatSetsIntense= new ArrayList<>();
         squatSetsIntense.add(new Set("5",calculateWeight(squatMax,frmFraction,unit,squatIncrement)));
         exercise1 = new Exercise("squat",squatSetsIntense);
+
+
+        ArrayList<Set> benchSetsIntense= new ArrayList<>();
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
+        exercise3 = new Exercise("bench",benchSetsIntense);
 
         ArrayList<Set> liftSetsIntense= new ArrayList<>();
         liftSetsIntense.add(new Set("12",calculateWeight(liftMax,0.75,unit,0)));
@@ -127,16 +124,11 @@ public class plan {
         liftSetsIntense.add(new Set("12",calculateWeight(liftMax,0.75,unit,0)));
         exercise2 = new Exercise("deadlift",liftSetsIntense);
 
-        ArrayList<Set> benchSetsIntense= new ArrayList<>();
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
-        exercise3 = new Exercise("bench",benchSetsIntense);
 
         exercisesVol=new ArrayList<Exercise>();
         exercisesVol.add(exercise1);
-        exercisesVol.add(exercise2);
         exercisesVol.add(exercise3);
+        exercisesVol.add(exercise2);
         Workout intense=new Workout("Intensity Day",exercisesVol);
 
         ArrayList<Workout> workouts = new ArrayList<Workout>();

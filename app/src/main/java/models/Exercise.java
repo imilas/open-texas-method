@@ -13,13 +13,6 @@ public class Exercise{
     Exercise(String name, ArrayList<Set> sets){
         this.exerciseName=name;
         this.sets=sets;
-//        //SetData set = new SetData();
-//        for(SetData set : setDatas){
-//           Set newSet = new Set();
-//            newSet.Weight=calculateWeight(200, set.modifier, "lb");
-//            newSet.Reps=set.Reps;
-//            this.sets.add(newSet);
-//        }
     }
 
     //TODO Should these utility funcs be in the struct?

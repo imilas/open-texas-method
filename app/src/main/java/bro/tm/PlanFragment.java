@@ -22,22 +22,29 @@ import models.plan;
 import static android.widget.LinearLayout.LayoutParams.*;
 
 public class PlanFragment extends Fragment {
+    public int WeekNumber;
 
-    public static PlanFragment newInstance(){
+    public PlanFragment newInstance(int index){
         PlanFragment thisFragment= new PlanFragment();
+        thisFragment.setWeekNumber(index);
         return thisFragment;
-
     }
 
+    public void setWeekNumber(int index){
+        WeekNumber=index;
+    }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        //creating a new plan model and putting together the plan-layout accordingly
 
         ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.fragment_plan_layout, container, false);
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        plan plan = new plan(prefs);
         LinearLayout rootView= (LinearLayout) planView.findViewById(R.id.content);
 
-        SharedPreferences prefs = this.getActivity().getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        plan plan = new plan(prefs);
-        for(Workout workout : plan.getWeek1().workouts){
+        for(Workout workout : plan.getWeek(WeekNumber).workouts){
+            // Workouts contain date to be done, and exercises
+            // Ex ["VolumeDay",[Exercise[["Squat", [Set[100,6], Set[100,6]]]], Exercise[["Deadlift", [Set[100,6], Set[100,6]]]]]]]
 
             ViewGroup row = (ViewGroup) inflater.inflate(R.layout.exercise_layout , container, false);
             row.setBackgroundResource(R.drawable.customborder);
@@ -54,10 +61,7 @@ public class PlanFragment extends Fragment {
                 setView.setLayoutParams(new LayoutParams(MATCH_PARENT, WRAP_CONTENT));
                 setView.setBackgroundResource(R.drawable.set_border);
                 AutofitTextView setName = new AutofitTextView(this.getContext());
-
                 setName.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT,0.2f));
-
-
                 setName.setGravity(Gravity.CENTER);
                 setName.setText(exercise.exerciseName);
                 setName.setTextSize(TypedValue.COMPLEX_UNIT_SP,22);
@@ -69,7 +73,6 @@ public class PlanFragment extends Fragment {
                 numberContainer.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT,0.8f));
                 for (Set set : exercise.sets){
                     //make a layout with 2 text views on top of each other for sets and reps
-
                     ViewGroup setXRepsLayout = (ViewGroup) inflater.inflate(R.layout.set_x_rep_layout, container, false);
                     setXRepsLayout.setLayoutParams(new LayoutParams(WRAP_CONTENT,WRAP_CONTENT,1f));
 
@@ -79,8 +82,8 @@ public class PlanFragment extends Fragment {
                     setReps.setText("x"+set.Reps);
 
                     setReps.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
-
                     setWeight.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+
                     numberContainer.addView(setXRepsLayout);
                 }
                 setView.addView(numberContainer);

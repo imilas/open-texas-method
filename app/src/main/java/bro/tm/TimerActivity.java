@@ -16,7 +16,7 @@ public class TimerActivity extends Activity {
     TextView timerTextView;
     long startTime = 0;
     long stopTime = 0;
-
+    long resetTime = 0;
     //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -27,9 +27,7 @@ public class TimerActivity extends Activity {
             int seconds = (int) (millis / 1000);
             int minutes = seconds / 60;
             seconds = seconds % 60;
-
             timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-
             timerHandler.postDelayed(this, 500);
         }
     };
@@ -40,7 +38,6 @@ public class TimerActivity extends Activity {
         setContentView(R.layout.activity_timer);
         timerTextView = (TextView) findViewById(R.id.timer_text);
     }
-
 
     public void startStopClicked(View v) {
         Button b = (Button) v;
@@ -56,8 +53,9 @@ public class TimerActivity extends Activity {
     }
 
     public void resetClicked(View v) {
-
-            startTime = System.currentTimeMillis();
+        startTime = System.currentTimeMillis();
+        stopTime = 0;
+        timerTextView.setText(String.format("%d:%02d", 0, 0));
 
     }
     @Override

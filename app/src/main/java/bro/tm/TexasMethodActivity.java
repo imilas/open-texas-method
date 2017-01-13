@@ -22,7 +22,7 @@ import events.DatabaseUpdate;
 
 public class TexasMethodActivity extends AppCompatActivity{
 
-    private static final int NUM_PAGES =3;
+    private static final int NUM_PAGES =4;
     public String logsTag="";
     public String setupTag="";
     public String planTag="";
@@ -65,10 +65,12 @@ public class TexasMethodActivity extends AppCompatActivity{
         @Override
         public Fragment getItem(int position) {
             if (position == 0){
-                return  new PlanFragment().newInstance();
-            }else if(position==1){
-                return new SetupFragment().newInstance();
+                return  new PlanFragment().newInstance(0);
+            }if (position == 1){
+                return  new PlanFragment().newInstance(1);
             }else if(position==2){
+                return new SetupFragment().newInstance();
+            }else if(position==3){
                 return new LogsFragment().newInstance();
             }else{
                 return null;
@@ -79,32 +81,38 @@ public class TexasMethodActivity extends AppCompatActivity{
         public CharSequence getPageTitle(int position) {
 
             if (position == 0) {
-                return "Plan";
-            } else if(position == 1) {
-                return "Setup";
-            }else{
-                return "logs";
+                return "Plan A";
             }
+            if(position==1){
+                return "Plan B";
+            }
+            if(position == 2) {
+                return "Setup";
+            }
+            if(position==3){
+                return "Logs";
+            }
+            return "Unknown Position";
         }
 
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
-            // get the tags set by FragmentPagerAdapter
-            switch (position) {
-                case 0:
-                    planTag = createdFragment.getTag();
-                    break;
-                case 1:
-                    setupTag = createdFragment.getTag();
-                    break;
-                case 2:
-                    logsTag = createdFragment.getTag();
-                    break;
-            }
-            // ... save the tags somewhere so you can reference them later
-            return createdFragment;
-        }
+//        @Override
+//        public Object instantiateItem(ViewGroup container, int position) {
+//            Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
+//            // get the tags set by FragmentPagerAdapter
+//            switch (position) {
+//                case 0:
+//                    planTag = createdFragment.getTag();
+//                    break;
+//                case 1:
+//                    setupTag = createdFragment.getTag();
+//                    break;
+//                case 2:
+//                    logsTag = createdFragment.getTag();
+//                    break;
+//            }
+//            // ... save the tags somewhere so you can reference them later
+//            return createdFragment;
+//        }
 
         @Override
         public int getCount() {
@@ -148,10 +156,8 @@ public class TexasMethodActivity extends AppCompatActivity{
         editor.putString("ohp_max",ohpMax);
         editor.putString("ohp_increment",ohpIncrement);
         editor.commit();
-
         //update the plan
        rebuild();
-
     }
 
     public void saveUnit(View view){
@@ -178,9 +184,8 @@ public class TexasMethodActivity extends AppCompatActivity{
         }
         String unit = prefs.getString("unit","lbs");
         System.out.print(unit);
-
-
     }
+
     public void finishWeek(View v){
         Intent intent = new Intent(this,FinishWeekActivity.class);
         startActivity(intent);
@@ -198,11 +203,8 @@ public class TexasMethodActivity extends AppCompatActivity{
     }
 
     public void rebuild(){
-
         mPagerAdapter.notifyDataSetChanged();
         EventBus.getDefault().post(new DatabaseUpdate("Plan refreshed!"));
-
-
     }
 }
 

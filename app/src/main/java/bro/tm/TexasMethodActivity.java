@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,7 +34,8 @@ public class TexasMethodActivity extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
-        // Instantiate a ViewPager and a PagerAdapter.
+        SharedPreferences prefs = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
@@ -114,11 +116,10 @@ public class TexasMethodActivity extends AppCompatActivity{
     public void updateMaxes(View v){
         //get the maxes from the view and put them in the ShareadPreferences
         ViewGroup setupLayout = (ViewGroup) this.findViewById(R.id.setup_layout);
-
         SharedPreferences prefs = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
 
+        SharedPreferences.Editor editor = prefs.edit();
         //get new weights
         TextView tv = (TextView) setupLayout.findViewById(R.id.bench_max);
         String benchMax =  tv.getText().toString();
@@ -133,7 +134,6 @@ public class TexasMethodActivity extends AppCompatActivity{
         String squatIncrement =  tv.getText().toString();
         tv = (TextView) setupLayout.findViewById(R.id.bench_increment);
         String benchIncrement =  tv.getText().toString();
-
         tv = (TextView) setupLayout.findViewById(R.id.ohp_max);
         String ohpMax =  tv.getText().toString();
         tv = (TextView) setupLayout.findViewById(R.id.ohp_increment);
@@ -153,8 +153,41 @@ public class TexasMethodActivity extends AppCompatActivity{
        rebuild();
 
     }
+
+    public void saveUnit(View view){
+        //save whatever unit the user has selected
+        //get the maxes from the view and put them in the ShareadPreferences
+        ViewGroup setupLayout = (ViewGroup) this.findViewById(R.id.setup_layout);
+        SharedPreferences prefs = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+        boolean checked = ((RadioButton) view).isChecked();
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radio_lbs:
+                if (checked)
+                    editor.putString("unit", "lbs");
+                    editor.commit();
+                    break;
+            case R.id.radio_kgs:
+                if (checked)
+                    editor.putString("unit", "kgs");
+                    editor.commit();
+                    break;
+        }
+        String unit = prefs.getString("unit","lbs");
+        System.out.print(unit);
+
+
+    }
     public void finishWeek(View v){
         Intent intent = new Intent(this,FinishWeekActivity.class);
+        startActivity(intent);
+    }
+
+    public void timerActivity(View v){
+        Intent intent = new Intent(this,TimerActivity.class);
         startActivity(intent);
     }
 

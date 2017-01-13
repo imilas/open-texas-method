@@ -4,23 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.DashPathEffect;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RadioButton;
 import android.widget.Switch;
-
-
-import com.google.android.gms.wearable.MessageEvent;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.Arrays;
-
-import events.DatabaseUpdate;
 import models.WeeklyMaxLogsHelper;
 
 /**
@@ -33,8 +20,6 @@ public class FinishWeekActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_week);
-
-
     }
 
     public void weekFinishedConfirmed(View v){

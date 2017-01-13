@@ -19,17 +19,11 @@ public class plan {
 
     public plan(SharedPreferences prefs){
 
-
-
-        String unit = "lb";
+        String unit = prefs.getString("unit","lbs");
         String opt1 = "ohp";
         String opt2 = "row";
         String opt3 = "pullup";
-//        SharedPreferences.Editor edit = prefs.edit();
-//        edit.putString("squatMax", "300");
-//        edit.putString("benchMax", "225");
-//        edit.putString("liftMax", "300");
-//        edit.commit();
+
         double benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
         double squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
         double liftMax = Double.parseDouble(prefs.getString("deadlift_max", "300"));
@@ -43,8 +37,6 @@ public class plan {
         double fS=0.87 * frmFraction ;
         double fB=0.85 * frmFraction ;
         double fL=0.9 * frmFraction;
-
-
 
         //**********week1*******************
 
@@ -153,9 +145,9 @@ public class plan {
 
     public String calculateWeight(double weight, double modifier, String weightUnit, double smallAdjustments) {
         switch (weightUnit) {
-            case "kg":
+            case "kgs":
                 return String.valueOf(roundToKgs(weight * modifier)+smallAdjustments);
-            case "lb":
+            case "lbs":
                 return String.valueOf(roundToLbs(weight * modifier)+smallAdjustments);
             default:
                 return "";

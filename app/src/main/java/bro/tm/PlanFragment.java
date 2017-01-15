@@ -24,9 +24,8 @@ import static android.widget.LinearLayout.LayoutParams.*;
 public class PlanFragment extends Fragment {
     public int WeekNumber;
 
-    public PlanFragment newInstance(int index){
+    public PlanFragment newInstance(){
         PlanFragment thisFragment= new PlanFragment();
-        thisFragment.setWeekNumber(index);
         return thisFragment;
     }
 

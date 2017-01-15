@@ -10,11 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class WeeklyMaxLogsHelper extends SQLiteOpenHelper {
 
-        private static final int DATABASE_VERSION = 7;
+        private static final int DATABASE_VERSION = 8;
         private static final String LOGS_TABLE_NAME = "logs";
         private static final String DATABASE_NAME = "TMDB";
         private static final String DICTIONARY_TABLE_CREATE =
                 "CREATE TABLE " + LOGS_TABLE_NAME + " (" +
+                        "ohp" + " Double, " +
                         "bench" + " Double, " +
                         "deadlift" + " Double, " +
                         "squat" + " Double);";

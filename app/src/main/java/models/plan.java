@@ -86,7 +86,7 @@ public class plan {
             squatSetsMon.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
         }
 
-        Exercise exercise1 = new Exercise("squat",squatSetsMon);
+        Exercise exercise1 = new Exercise("squatd",squatSetsMon);
 
         ArrayList<Set> benchSetsMon= new ArrayList<>();
         for (int i = 0; i<5; i++) {
@@ -100,8 +100,8 @@ public class plan {
 
         ArrayList<Exercise>  exercisesVol=new ArrayList<Exercise>();
         exercisesVol.add(exercise1);
-        exercisesVol.add(exercise2);
         exercisesVol.add(exercise3);
+        exercisesVol.add(exercise2);
         Workout volume=new Workout("Volume Day",exercisesVol);
 
         //***Wednesday********************
@@ -113,8 +113,8 @@ public class plan {
         Exercise exercise7 = new Exercise("squat",squatSetsWednesday);
 
         ArrayList<Set> ohpSetsTue= new ArrayList<>();
-        for (int i = 0; i<2; i++) {
-            ohpSetsTue.add(new Set("8", calculateWeight(ohpMax, fB * 0.7, unit, 0)));
+        for (int i = 0; i<3; i++) {
+            ohpSetsTue.add(new Set("8", calculateWeight(ohpMax, fB * 0.85, unit, 0)));
         }
         Exercise exercise4 = new Exercise("ohp",ohpSetsTue);
 
@@ -170,7 +170,6 @@ public class plan {
     }
 
     public WorkoutWeek week2(){
-        //**********week1*******************
 
         //Volume
         ArrayList<Set> squatSetsMon= new ArrayList<>();
@@ -182,9 +181,9 @@ public class plan {
 
         ArrayList<Set> benchSetsMon= new ArrayList<>();
         for (int i = 0; i<5; i++) {
-            benchSetsMon.add(new Set("5", calculateWeight(benchMax, fB, unit, 0)));
+            benchSetsMon.add(new Set("5", calculateWeight(ohpMax, fB, unit, 0)));
         }
-        Exercise exercise3 = new Exercise("bench",benchSetsMon);
+        Exercise exercise3 = new Exercise("OHP",benchSetsMon);
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
         liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
@@ -192,8 +191,8 @@ public class plan {
 
         ArrayList<Exercise>  exercisesVol=new ArrayList<Exercise>();
         exercisesVol.add(exercise1);
-        exercisesVol.add(exercise2);
         exercisesVol.add(exercise3);
+        exercisesVol.add(exercise2);
         Workout volume=new Workout("Volume Day",exercisesVol);
 
         //***Wednesday********************
@@ -206,9 +205,9 @@ public class plan {
 
         ArrayList<Set> ohpSetsTue= new ArrayList<>();
         for (int i = 0; i<2; i++) {
-            ohpSetsTue.add(new Set("8", calculateWeight(ohpMax, fB * 0.4, unit, 0)));
+            ohpSetsTue.add(new Set("8", calculateWeight(benchMax, fB * 0.7, unit, 0)));
         }
-        Exercise exercise4 = new Exercise("ohp",ohpSetsTue);
+        Exercise exercise4 = new Exercise("bench",ohpSetsTue);
 
         ArrayList<Set> opt2SetsTue= new ArrayList<>();
         for (int i = 0; i<3; i++) {
@@ -238,8 +237,8 @@ public class plan {
 
 
         ArrayList<Set> benchSetsIntense= new ArrayList<>();
-        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
-        exercise3 = new Exercise("bench",benchSetsIntense);
+        benchSetsIntense.add(new Set("5",calculateWeight(ohpMax,frmFraction,unit,benchIncrement)));
+        exercise3 = new Exercise("OHP",benchSetsIntense);
 
         ArrayList<Set> liftSetsIntense= new ArrayList<>();
         for (int i = 0; i<3; i++) {

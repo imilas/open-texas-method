@@ -27,6 +27,7 @@ public class FinishWeekActivity extends FragmentActivity {
         Switch rb = (Switch) findViewById(R.id.deadlift_switch);
         Switch rd = (Switch) findViewById(R.id.bench_switch);
         Switch rs = (Switch) findViewById(R.id.squat_switch);
+        Switch ro = (Switch) findViewById(R.id.ohp_switch);
 
         SharedPreferences prefs = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -38,6 +39,9 @@ public class FinishWeekActivity extends FragmentActivity {
         double benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
         double  deadliftIncrement= Double.parseDouble(prefs.getString("deadlift_increment", "5"));
         double  squatIncrement= Double.parseDouble(prefs.getString("squat_increment", "5"));
+        double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
+        double ohpIncrement = Double.parseDouble(prefs.getString("ohp_increment", "5"));
+
 
         WeeklyMaxLogsHelper logs = new WeeklyMaxLogsHelper(this);
         SQLiteDatabase db = logs.getWritableDatabase();
@@ -45,6 +49,7 @@ public class FinishWeekActivity extends FragmentActivity {
         values.put("Squat", squatMax);
         values.put("Bench", benchMax);
         values.put("Deadlift", deadLiftMax);
+        values.put("OHP", ohpMax);
         long newRowId = db.insert("logs", null, values);
 
         if(rb.isChecked()){
@@ -55,6 +60,9 @@ public class FinishWeekActivity extends FragmentActivity {
         }
         if(rd.isChecked()){
             editor.putString("deadlift_max",String.valueOf(deadLiftMax+deadliftIncrement));
+        }
+        if(ro.isChecked()){
+            editor.putString("ohp_max",String.valueOf(ohpIncrement+ohpMax));
         }
         editor.commit();
 

@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:id="@+id/finish_week_layout">
 
-    <TextView
-        android:text="Did you finish your reps?"
+    <me.grantland.widget.AutofitTextView
+        android:text="What did you set PRs in?"
         android:layout_width="match_parent"
+        android:textSize="30dp"
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
 
@@ -14,19 +15,29 @@
         android:text="Squat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="30dp"
         android:id="@+id/squat_switch" />
 
     <Switch
         android:text="Deadlift"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="30dp"
         android:id="@+id/deadlift_switch" />
 
     <Switch
         android:text="Bench"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bench_switch" />
+        android:textSize="30dp"
+        android:id="@+id/bench_switch" />\
+
+    <Switch
+        android:text="OHP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:id="@+id/ohp_switch" />
 
     <Button
         android:text="Save and Finish week"

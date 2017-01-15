@@ -44,16 +44,19 @@ public class LogsFragment extends Fragment {
         GraphView benchGraph = (GraphView) rootView.findViewById(R.id.bench_graph);
         GraphView squatGraph = (GraphView) rootView.findViewById(R.id.squat_graph);
         GraphView deadliftGraph = (GraphView) rootView.findViewById(R.id.deadlift_graph);
+        GraphView ohpGraph = (GraphView) rootView.findViewById(R.id.ohp_graph);
 
         cursor.moveToFirst();
 
         LineGraphSeries<DataPoint> series1 = new LineGraphSeries<>();
         LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>();
         LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>();
+        LineGraphSeries<DataPoint> series4 = new LineGraphSeries<>();
 
         series1.setDrawDataPoints(true);
         series2.setDrawDataPoints(true);
         series3.setDrawDataPoints(true);
+        series4.setDrawDataPoints(true);
 
         squatGraph.setTitle("Squats");
         squatGraph.setTitleTextSize(80);
@@ -66,22 +69,29 @@ public class LogsFragment extends Fragment {
         deadliftGraph.setTitle("Deadlift");
         deadliftGraph.setTitleTextSize(80);
         deadliftGraph.getGridLabelRenderer().setNumHorizontalLabels(8);
+
+        ohpGraph.setTitle("OHP");
+        ohpGraph.setTitleTextSize(80);
+        ohpGraph.getGridLabelRenderer().setNumHorizontalLabels(8);
         
 
         series1.setColor(Color.RED);
-        series2.setColor(Color.GREEN);
+        series2.setColor(Color.DKGRAY);
+        series3.setColor(Color.MAGENTA);
 
         while(!cursor.isAfterLast()){
             series1.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(0)),true,cursor.getCount());
             series2.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(1)),true,cursor.getCount());
             series3.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(2)),true,cursor.getCount());
+            series4.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(3)),true,cursor.getCount());
 
             cursor.moveToNext();
         }
 
-        benchGraph.addSeries(series1);
-        deadliftGraph.addSeries(series2);
+        benchGraph.addSeries(series2);
+        deadliftGraph.addSeries(series4);
         squatGraph.addSeries(series3);
+        ohpGraph.addSeries(series1);
 
         benchGraph.getViewport().setScalable(true);
         benchGraph.getViewport().setScrollable(true);
@@ -99,27 +109,12 @@ public class LogsFragment extends Fragment {
         deadliftGraph.getViewport().setScrollable(true);
         deadliftGraph.getViewport().setScalableY(true);
         deadliftGraph.getViewport().setScrollableY(true);
+
+        ohpGraph.getViewport().setScalable(true);
+        ohpGraph.getViewport().setScrollable(true);
+        ohpGraph.getViewport().setScalableY(true);
+        ohpGraph.getViewport().setScrollableY(true);
         return rootView;
     }
-
-//    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void DatabaseUpdate(DatabaseUpdate event) {
-//        Toast.makeText(this.getActivity(), event.message, Toast.LENGTH_SHORT).show();
-//    }
-//
-//
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        EventBus.getDefault().register(this);
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        EventBus.getDefault().unregister(this);
-//        super.onStop();
-//    }
 
 }

@@ -65,9 +65,13 @@ public class TexasMethodActivity extends AppCompatActivity{
         @Override
         public Fragment getItem(int position) {
             if (position == 0){
-                return  new PlanFragment().newInstance(0);
+                PlanFragment fraggy = new PlanFragment().newInstance();
+                fraggy.setWeekNumber(position);
+                return  fraggy;
             }if (position == 1){
-                return  new PlanFragment().newInstance(1);
+                PlanFragment fraggy = new PlanFragment().newInstance();
+                fraggy.setWeekNumber(position);
+                return  fraggy;
             }else if(position==2){
                 return new SetupFragment().newInstance();
             }else if(position==3){
@@ -94,25 +98,6 @@ public class TexasMethodActivity extends AppCompatActivity{
             }
             return "Unknown Position";
         }
-
-//        @Override
-//        public Object instantiateItem(ViewGroup container, int position) {
-//            Fragment createdFragment = (Fragment) super.instantiateItem(container, position);
-//            // get the tags set by FragmentPagerAdapter
-//            switch (position) {
-//                case 0:
-//                    planTag = createdFragment.getTag();
-//                    break;
-//                case 1:
-//                    setupTag = createdFragment.getTag();
-//                    break;
-//                case 2:
-//                    logsTag = createdFragment.getTag();
-//                    break;
-//            }
-//            // ... save the tags somewhere so you can reference them later
-//            return createdFragment;
-//        }
 
         @Override
         public int getCount() {

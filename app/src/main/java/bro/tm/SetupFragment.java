@@ -61,7 +61,6 @@ public class SetupFragment extends Fragment {
         v.setText(prefs.getString("squat_increment","5"));
         v = (TextView) rootView.findViewById(R.id.deadlift_increment);
         v.setText(prefs.getString("deadlift_increment","5"));
-
         v = (TextView) rootView.findViewById(R.id.ohp_max);
         v.setText(prefs.getString("ohp_max","100"));
         v = (TextView) rootView.findViewById(R.id.ohp_increment);

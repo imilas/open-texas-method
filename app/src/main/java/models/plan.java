@@ -86,7 +86,7 @@ public class plan {
             squatSetsMon.add(new Set("5",calculateWeight(squatMax,fS,unit,0)));
         }
 
-        Exercise exercise1 = new Exercise("squatd",squatSetsMon);
+        Exercise exercise1 = new Exercise("squat",squatSetsMon);
 
         ArrayList<Set> benchSetsMon= new ArrayList<>();
         for (int i = 0; i<5; i++) {
@@ -183,7 +183,7 @@ public class plan {
         for (int i = 0; i<5; i++) {
             benchSetsMon.add(new Set("5", calculateWeight(ohpMax, fB, unit, 0)));
         }
-        Exercise exercise3 = new Exercise("OHP",benchSetsMon);
+        Exercise exercise3 = new Exercise("ohp",benchSetsMon);
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
         liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
@@ -238,7 +238,7 @@ public class plan {
 
         ArrayList<Set> benchSetsIntense= new ArrayList<>();
         benchSetsIntense.add(new Set("5",calculateWeight(ohpMax,frmFraction,unit,benchIncrement)));
-        exercise3 = new Exercise("OHP",benchSetsIntense);
+        exercise3 = new Exercise("ohp",benchSetsIntense);
 
         ArrayList<Set> liftSetsIntense= new ArrayList<>();
         for (int i = 0; i<3; i++) {

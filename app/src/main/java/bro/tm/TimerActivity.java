@@ -61,7 +61,7 @@ public class TimerActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-        timerHandler.removeCallbacks(timerRunnable);
+       // timerHandler.removeCallbacks(timerRunnable);
     }
 
 }

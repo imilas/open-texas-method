@@ -168,8 +168,6 @@ public class TexasMethodActivity extends AppCompatActivity{
                     editor.commit();
                     break;
         }
-        String unit = prefs.getString("unit","lbs");
-        System.out.print(unit);
     }
 
     public void finishWeek(View v){

@@ -85,10 +85,10 @@ public class LogsFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        double benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
-        double squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
-        double deadLiftMax = Double.parseDouble(prefs.getString("deadlift_max", "420"));
-        double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
+        double benchMax = Double.parseDouble(prefs.getString("bench_max", "100"));
+        double squatMax = Double.parseDouble(prefs.getString("squat_max", "200"));
+        double deadLiftMax = Double.parseDouble(prefs.getString("deadlift_max", "220"));
+        double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "100"));
 
         int seriesLength = cursor.getCount()+1;
         series1.appendData(new DataPoint(seriesLength,ohpMax),true,seriesLength);

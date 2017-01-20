@@ -1,5 +1,7 @@
 package bro.tm;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -17,11 +19,11 @@ import models.WeeklyMaxLogsHelper;
 
 public class LogsFragment extends Fragment {
 
-
-    public static LogsFragment newInstance(){
+    public  LogsFragment newInstance(){
         LogsFragment thisFragment = new LogsFragment();
         return thisFragment;
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_logs_layout, container, false);
@@ -80,6 +82,20 @@ public class LogsFragment extends Fragment {
 
             cursor.moveToNext();
         }
+        SharedPreferences prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        double benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
+        double squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
+        double deadLiftMax = Double.parseDouble(prefs.getString("deadlift_max", "420"));
+        double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
+
+        int seriesLength = cursor.getCount()+1;
+        series1.appendData(new DataPoint(seriesLength,ohpMax),true,seriesLength);
+        series2.appendData(new DataPoint(seriesLength,benchMax),true,seriesLength);
+        series3.appendData(new DataPoint(seriesLength,squatMax),true,seriesLength);
+        series4.appendData(new DataPoint(seriesLength,deadLiftMax),true,seriesLength);
+
 
         benchGraph.addSeries(series2);
         deadliftGraph.addSeries(series4);

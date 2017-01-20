@@ -16,6 +16,8 @@ import models.WeeklyMaxLogsHelper;
 
 public class FinishWeekActivity extends FragmentActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

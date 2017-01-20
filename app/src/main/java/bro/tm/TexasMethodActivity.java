@@ -28,13 +28,14 @@ public class TexasMethodActivity extends AppCompatActivity{
     public String planTag="";
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
+    SharedPreferences prefs = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
-        SharedPreferences prefs = this.getSharedPreferences(
+        this.prefs = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());

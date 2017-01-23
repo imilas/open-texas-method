@@ -8,7 +8,8 @@ import android.app.Activity;
         import android.os.Bundle;
         import android.os.Handler;
         import android.view.View;
-        import android.widget.Button;
+import android.view.WindowManager;
+import android.widget.Button;
         import android.widget.TextView;
 
 public class TimerActivity extends Activity {
@@ -16,7 +17,6 @@ public class TimerActivity extends Activity {
     TextView timerTextView;
     long startTime = 0;
     long stopTime = 0;
-    long resetTime = 0;
     //runs without a timer by reposting this handler at the end of the runnable
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -37,6 +37,7 @@ public class TimerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         timerTextView = (TextView) findViewById(R.id.timer_text);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     public void startStopClicked(View v) {
@@ -58,6 +59,7 @@ public class TimerActivity extends Activity {
         timerTextView.setText(String.format("%d:%02d", 0, 0));
 
     }
+    //do we want the timer to pause when the activity is paused?
     @Override
     public void onPause() {
         super.onPause();

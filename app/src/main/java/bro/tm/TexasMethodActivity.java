@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -43,6 +44,8 @@ public class TexasMethodActivity extends AppCompatActivity{
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsies);
         tabLayout.setupWithViewPager(mPager);
 
+
+
     }
 
     @Override
@@ -52,59 +55,6 @@ public class TexasMethodActivity extends AppCompatActivity{
         } else {
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
-    }
-
-    private class ScreenSlidePagerAdapter extends FragmentPagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        public int getItemPosition(Object object) {
-            return POSITION_NONE;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            if (position == 0){
-                PlanFragment fraggy = new PlanFragment().newInstance();
-                fraggy.setWeekNumber(position);
-                return  fraggy;
-            }if (position == 1){
-                PlanFragment fraggy = new PlanFragment().newInstance();
-                fraggy.setWeekNumber(position);
-                return  fraggy;
-            }else if(position==2){
-                return new SetupFragment().newInstance();
-            }else if(position==3){
-                return new LogsFragment().newInstance();
-            }else{
-                return null;
-            }
-
-        }
-        @Override
-        public CharSequence getPageTitle(int position) {
-
-            if (position == 0) {
-                return "Plan A";
-            }
-            if(position==1){
-                return "Plan B";
-            }
-            if(position == 2) {
-                return "Setup";
-            }
-            if(position==3){
-                return "Logs";
-            }
-            return "Unknown Position";
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
-
     }
 
     public void updateMaxes(View v){
@@ -168,6 +118,59 @@ public class TexasMethodActivity extends AppCompatActivity{
                     editor.commit();
                     break;
         }
+    }
+
+    private class ScreenSlidePagerAdapter extends FragmentPagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if (position == 0){
+                PlanFragment fraggy = new PlanFragment().newInstance();
+                fraggy.setWeekNumber(position);
+                return  fraggy;
+            }if (position == 1){
+                PlanFragment fraggy = new PlanFragment().newInstance();
+                fraggy.setWeekNumber(position);
+                return  fraggy;
+            }else if(position==2){
+                return new SetupFragment().newInstance();
+            }else if(position==3){
+                return new LogsFragment().newInstance();
+            }else{
+                return null;
+            }
+
+        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+
+            if (position == 0) {
+                return "Plan A";
+            }
+            if(position==1){
+                return "Plan B";
+            }
+            if(position == 2) {
+                return "Setup";
+            }
+            if(position==3){
+                return "Logs";
+            }
+            return "Unknown Position";
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_PAGES;
+        }
+
     }
 
     public void finishWeek(View v){

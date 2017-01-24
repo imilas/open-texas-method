@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,11 +31,20 @@ public class SetupFragment extends Fragment {
         SetupFragment thisFragment = new SetupFragment();
         return thisFragment;
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_setup_layout, container, false);
         setSetupView();
+        Spinner spinner = (Spinner) rootView.findViewById(R.id.planets_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
+                R.array.planets_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
         return rootView;
     }
@@ -65,7 +76,6 @@ public class SetupFragment extends Fragment {
         v.setText(prefs.getString("ohp_max","100"));
         v = (TextView) rootView.findViewById(R.id.ohp_increment);
         v.setText(prefs.getString("ohp_increment","5"));
-
         String unit = prefs.getString("unit","lbs");
 
         if(unit.equals("lbs")){

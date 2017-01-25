@@ -4,9 +4,11 @@
     <color name="set_color">#affffd</color>
     <color name="rep_color">#d3ffaf</color>
 
-    <string-array name="planets_array">
-        <item>Vanilla TM</item>
-        <item>Bench Focused TM</item>
+    <string-array name="plans_array">
+        <item>General Strength TM</item>
+        <item>Powerlifting TM</item>
+        <!--<item>Powerlifting(triples) TM</item>-->
+        <!--<item>BodyBuilding TM</item>-->
     </string-array>
 
 

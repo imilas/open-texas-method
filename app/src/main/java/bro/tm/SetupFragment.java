@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -24,7 +26,7 @@ import events.DatabaseUpdate;
  * Created by root on 06/12/16.
  */
 
-public class SetupFragment extends Fragment {
+public class SetupFragment extends Fragment{
 
     ViewGroup rootView;
     public static SetupFragment newInstance(){
@@ -36,15 +38,16 @@ public class SetupFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_setup_layout, container, false);
-        setSetupView();
-        Spinner spinner = (Spinner) rootView.findViewById(R.id.planets_spinner);
+        Spinner spinner = (Spinner) rootView.findViewById(R.id.plans_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.planets_array, android.R.layout.simple_spinner_item);
+                R.array.plans_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
+        setSetupView();
 
         return rootView;
     }
@@ -57,8 +60,8 @@ public class SetupFragment extends Fragment {
     }
 
     public void setSetupView(){
-
-        SharedPreferences prefs = this.getActivity().getSharedPreferences(
+        //set the maxes and increments
+        SharedPreferences  prefs = this.getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         TextView v = (TextView) rootView.findViewById(R.id.squat_max);
         v.setText(prefs.getString("squat_max","200"));
@@ -78,6 +81,7 @@ public class SetupFragment extends Fragment {
         v.setText(prefs.getString("ohp_increment","5"));
         String unit = prefs.getString("unit","lbs");
 
+        //set units
         if(unit.equals("lbs")){
             RadioButton lbRadio = (RadioButton) rootView.findViewById(R.id.radio_lbs);
             lbRadio.setChecked(true);
@@ -85,8 +89,31 @@ public class SetupFragment extends Fragment {
             RadioButton kgradio= (RadioButton) rootView.findViewById(R.id.radio_kgs);
             kgradio.setChecked(true);
         }
-    }
 
+        //set the current plan
+        String planFlavor = prefs.getString("plan_type","Powerlifting TM");
+        Spinner planSpinner = (Spinner) rootView.findViewById(R.id.plans_spinner);
+        planSpinner.setSelection(((ArrayAdapter)planSpinner.getAdapter()).getPosition(planFlavor));
+
+        planSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                Toast.makeText(parent.getContext(),
+                        "OnItemSelectedListener : " + parent.getItemAtPosition(position).toString(),
+                        Toast.LENGTH_SHORT).show();
+                        SharedPreferences  prefs = getActivity().getSharedPreferences(
+                                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("plan_type",parent.getItemAtPosition(position).toString());
+                        editor.commit();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
 
     @Override
     public void onStart() {

@@ -14,14 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
 import events.DatabaseUpdate;
 
-public class TexasMethodActivity extends AppCompatActivity{
+public class TexasMethodActivity extends AppCompatActivity {
 
     private static final int NUM_PAGES =4;
     public String logsTag="";
@@ -43,8 +45,6 @@ public class TexasMethodActivity extends AppCompatActivity{
         mPager.setAdapter(mPagerAdapter);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsies);
         tabLayout.setupWithViewPager(mPager);
-
-
 
     }
 
@@ -119,6 +119,9 @@ public class TexasMethodActivity extends AppCompatActivity{
                     break;
         }
     }
+
+
+
 
     private class ScreenSlidePagerAdapter extends FragmentPagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {

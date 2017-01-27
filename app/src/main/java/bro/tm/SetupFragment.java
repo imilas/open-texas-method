@@ -22,10 +22,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import events.DatabaseUpdate;
 
-/**
- * Created by root on 06/12/16.
- */
-
 public class SetupFragment extends Fragment{
 
     ViewGroup rootView;
@@ -48,7 +44,6 @@ public class SetupFragment extends Fragment{
         spinner.setAdapter(adapter);
 
         setSetupView();
-
         return rootView;
     }
 
@@ -61,8 +56,7 @@ public class SetupFragment extends Fragment{
 
     public void setSetupView(){
         //set the maxes and increments
-        SharedPreferences  prefs = this.getActivity().getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences  prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         TextView v = (TextView) rootView.findViewById(R.id.squat_max);
         v.setText(prefs.getString("squat_max","200"));
         v = (TextView) rootView.findViewById(R.id.deadlift_max);
@@ -90,7 +84,7 @@ public class SetupFragment extends Fragment{
             kgradio.setChecked(true);
         }
 
-        //set the current plan
+        //set the PlanVanilla flavor
         String planFlavor = prefs.getString("plan_type","Powerlifting TM");
         Spinner planSpinner = (Spinner) rootView.findViewById(R.id.plans_spinner);
         planSpinner.setSelection(((ArrayAdapter)planSpinner.getAdapter()).getPosition(planFlavor));
@@ -99,7 +93,7 @@ public class SetupFragment extends Fragment{
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Toast.makeText(parent.getContext(),
-                        "OnItemSelectedListener : " + parent.getItemAtPosition(position).toString(),
+                        "Plan set to : " + parent.getItemAtPosition(position).toString(),
                         Toast.LENGTH_SHORT).show();
                         SharedPreferences  prefs = getActivity().getSharedPreferences(
                                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -112,7 +106,6 @@ public class SetupFragment extends Fragment{
 
             }
         });
-
     }
 
     @Override

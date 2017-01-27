@@ -15,9 +15,11 @@ import android.widget.TextView;
 
 import me.grantland.widget.AutofitTextView;
 import models.Exercise;
+import models.PlanPowerlifting;
 import models.Set;
+import models.ThePlan;
 import models.Workout;
-import models.plan;
+import models.PlanVanilla;
 
 import static android.widget.LinearLayout.LayoutParams.*;
 
@@ -33,12 +35,20 @@ public class PlanFragment extends Fragment {
         WeekNumber=index;
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        //creating a new plan model and putting together the plan-layout accordingly
+        //creating a new PlanVanilla model and putting together the PlanVanilla-layout accordingly
 
         ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.fragment_plan_layout, container, false);
         SharedPreferences prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
-        plan plan = new plan(prefs);
+        String planFlavor = prefs.getString("plan_type","Powerlifting TM");
+        ThePlan plan = null;
+
+        if (planFlavor.equals("General Strength TM")){
+            plan= new PlanVanilla(prefs);
+        }else if(planFlavor.equals("Powerlifting TM")){
+            plan = new PlanPowerlifting(prefs);
+        }
+
         LinearLayout rootView= (LinearLayout) planView.findViewById(R.id.content);
 
         for(Workout workout : plan.getWeek(WeekNumber).workouts){

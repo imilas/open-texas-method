@@ -1,80 +1,11 @@
 package models;
-
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import java.util.ArrayList;
+public class PlanPowerlifting extends ThePlan {
 
-import bro.tm.R;
+    public PlanPowerlifting(SharedPreferences activityPrefs){
+        super(activityPrefs);
 
-/**
- * Created by amir on 06/05/16.
- */
-public class plan {
-    ArrayList<WorkoutWeek> planAlternatives = new ArrayList<>();
-    SharedPreferences prefs;
-    String unit;
-    String opt1 = "ohp";
-    String opt2 = "row";
-    String opt3 = "pullup";
-
-    double benchMax;
-    double squatMax;
-    double liftMax;
-    double deadliftIncrement;
-    double squatIncrement;
-    double benchIncrement;
-    double ohpMax;
-    double ohpIncrement;
-
-    double frmFraction = 0.87; //five rep max fraction
-    double fS=0.87 * frmFraction ;
-    double fB=0.85 * frmFraction ;
-    double fL=0.9 * frmFraction;
-
-    public plan(SharedPreferences activityPrefs){
-        prefs=activityPrefs;
-
-        unit = prefs.getString("unit","lbs");
-
-        benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
-        squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
-        liftMax = Double.parseDouble(prefs.getString("deadlift_max", "300"));
-        deadliftIncrement = Double.parseDouble(prefs.getString("deadlift_increment", "5"));
-        squatIncrement = Double.parseDouble(prefs.getString("squat_increment", "5"));
-        benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
-        ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
-        ohpIncrement = Double.parseDouble(prefs.getString("ohp_increment", "5"));
-
-        planAlternatives.add(week1());
-        planAlternatives.add(week2());
-
-    }
-
-
-    public WorkoutWeek getWeek(int index){
-        return planAlternatives.get(index);
-    }
-
-
-    public String calculateWeight(double weight, double modifier, String weightUnit, double smallAdjustments) {
-        switch (weightUnit) {
-            case "kgs":
-                return String.valueOf(roundToKgs(weight * modifier)+smallAdjustments);
-            case "lbs":
-                return String.valueOf(roundToLbs(weight * modifier)+smallAdjustments);
-            default:
-                return "";
-        }
-    }
-
-    public int roundToLbs (double weight){
-        return (int)((weight % 5 == 0) ? weight : weight + 5 - (weight % 5));
-    }
-    public int roundToKgs (Double weight) {
-        return (int)((weight % 2.5 == 0) ? weight : weight + 2.5 - (weight % 2.5));
     }
 
     public WorkoutWeek week1(){
@@ -113,8 +44,8 @@ public class plan {
         Exercise exercise7 = new Exercise("squat",squatSetsWednesday);
 
         ArrayList<Set> ohpSetsTue= new ArrayList<>();
-        for (int i = 0; i<3; i++) {
-            ohpSetsTue.add(new Set("8", calculateWeight(ohpMax, fB * 0.85, unit, 0)));
+        for (int i = 0; i<5; i++) {
+            ohpSetsTue.add(new Set("5", calculateWeight(ohpMax, fB , unit, 0)));
         }
         Exercise exercise4 = new Exercise("ohp",ohpSetsTue);
 
@@ -170,6 +101,7 @@ public class plan {
     }
 
     public WorkoutWeek week2(){
+        //**********week1*******************
 
         //Volume
         ArrayList<Set> squatSetsMon= new ArrayList<>();
@@ -181,9 +113,9 @@ public class plan {
 
         ArrayList<Set> benchSetsMon= new ArrayList<>();
         for (int i = 0; i<5; i++) {
-            benchSetsMon.add(new Set("5", calculateWeight(ohpMax, fB, unit, 0)));
+            benchSetsMon.add(new Set("5", calculateWeight(benchMax, fB, unit, 0)));
         }
-        Exercise exercise3 = new Exercise("ohp",benchSetsMon);
+        Exercise exercise3 = new Exercise("bench",benchSetsMon);
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
         liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
@@ -204,10 +136,10 @@ public class plan {
         Exercise exercise7 = new Exercise("squat",squatSetsWednesday);
 
         ArrayList<Set> ohpSetsTue= new ArrayList<>();
-        for (int i = 0; i<2; i++) {
-            ohpSetsTue.add(new Set("8", calculateWeight(benchMax, fB * 0.7, unit, 0)));
+        for (int i = 0; i<3; i++) {
+            ohpSetsTue.add(new Set("5", calculateWeight(ohpMax, fB, unit, 0)));
         }
-        Exercise exercise4 = new Exercise("bench",ohpSetsTue);
+        Exercise exercise4 = new Exercise("ohp",ohpSetsTue);
 
         ArrayList<Set> opt2SetsTue= new ArrayList<>();
         for (int i = 0; i<3; i++) {
@@ -237,8 +169,8 @@ public class plan {
 
 
         ArrayList<Set> benchSetsIntense= new ArrayList<>();
-        benchSetsIntense.add(new Set("5",calculateWeight(ohpMax,frmFraction,unit,benchIncrement)));
-        exercise3 = new Exercise("ohp",benchSetsIntense);
+        benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
+        exercise3 = new Exercise("bench",benchSetsIntense);
 
         ArrayList<Set> liftSetsIntense= new ArrayList<>();
         for (int i = 0; i<3; i++) {
@@ -257,8 +189,9 @@ public class plan {
         workouts.add(volume);
         workouts.add(recovery);
         workouts.add(intense);
-        return new WorkoutWeek("Week2",workouts);
+        return new WorkoutWeek("Week1",workouts);
     }
 
 
 }
+

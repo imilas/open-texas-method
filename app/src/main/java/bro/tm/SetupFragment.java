@@ -47,13 +47,6 @@ public class SetupFragment extends Fragment{
         return rootView;
     }
 
-    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void DatabaseUpdate(DatabaseUpdate event) {
-        //Toast.makeText(this.getActivity(), event.message, Toast.LENGTH_SHORT).show();
-        setSetupView();
-    }
-
     public void setSetupView(){
         //set the maxes and increments
         SharedPreferences  prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -92,9 +85,6 @@ public class SetupFragment extends Fragment{
         planSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Toast.makeText(parent.getContext(),
-                        "Plan set to : " + parent.getItemAtPosition(position).toString(),
-                        Toast.LENGTH_SHORT).show();
                         SharedPreferences  prefs = getActivity().getSharedPreferences(
                                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
@@ -106,6 +96,13 @@ public class SetupFragment extends Fragment{
 
             }
         });
+    }
+
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void DatabaseUpdate(DatabaseUpdate event) {
+        Toast.makeText(this.getActivity(), event.message + "setup fragment", Toast.LENGTH_SHORT).show();
+        setSetupView();
     }
 
     @Override

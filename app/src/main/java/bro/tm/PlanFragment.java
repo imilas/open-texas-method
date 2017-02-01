@@ -12,7 +12,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import events.DatabaseUpdate;
 import me.grantland.widget.AutofitTextView;
 import models.Exercise;
 import models.PlanPowerlifting;
@@ -25,6 +31,9 @@ import static android.widget.LinearLayout.LayoutParams.*;
 
 public class PlanFragment extends Fragment {
     public int WeekNumber;
+    public ViewGroup planView = null;
+    public ViewGroup container = null;
+    public LayoutInflater inflater = null;
 
     public PlanFragment newInstance(){
         PlanFragment thisFragment= new PlanFragment();
@@ -34,10 +43,13 @@ public class PlanFragment extends Fragment {
     public void setWeekNumber(int index){
         WeekNumber=index;
     }
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        //creating a new PlanVanilla model and putting together the PlanVanilla-layout accordingly
 
-        ViewGroup planView = (ViewGroup) inflater.inflate(R.layout.fragment_plan_layout, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
+        this.inflater=inflater;
+        this.container = container;
+
+        planView = (ViewGroup) inflater.inflate(R.layout.fragment_plan_layout, container, false);
         SharedPreferences prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         String planFlavor = prefs.getString("plan_type","Powerlifting TM");
@@ -48,7 +60,6 @@ public class PlanFragment extends Fragment {
         }else if(planFlavor.equals("Powerlifting TM")){
             plan = new PlanPowerlifting(prefs);
         }
-
         LinearLayout rootView= (LinearLayout) planView.findViewById(R.id.content);
 
         for(Workout workout : plan.getWeek(WeekNumber).workouts){
@@ -101,8 +112,31 @@ public class PlanFragment extends Fragment {
 
         }
 
-
         return planView;
+
+    }
+    public void updateView(){
+
+    }
+
+    // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void DatabaseUpdate(DatabaseUpdate event) {
+        planView.invalidate();
+        updateView();
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
     }
 
 }

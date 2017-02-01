@@ -38,6 +38,8 @@ public class TexasMethodActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
+        this.prefs = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
@@ -58,7 +60,8 @@ public class TexasMethodActivity extends AppCompatActivity {
     public void updateMaxes(View v){
         //get the maxes from the view and put them in the ShareadPreferences
         ViewGroup setupLayout = (ViewGroup) this.findViewById(R.id.setup_layout);
-        SharedPreferences prefs = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = prefs.edit();
         //get new weights
@@ -116,6 +119,8 @@ public class TexasMethodActivity extends AppCompatActivity {
                     break;
         }
     }
+
+
 
 
     private class ScreenSlidePagerAdapter extends FragmentPagerAdapter {
@@ -189,7 +194,7 @@ public class TexasMethodActivity extends AppCompatActivity {
 
     public void rebuild(){
         mPagerAdapter.notifyDataSetChanged();
-        EventBus.getDefault().post(new DatabaseUpdate("Plan refreshed!"));
+
     }
 }
 

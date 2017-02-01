@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Switch;
+
+import org.greenrobot.eventbus.EventBus;
+
+import events.DatabaseUpdate;
 import models.WeeklyMaxLogsHelper;
 
 /**
@@ -16,10 +20,9 @@ import models.WeeklyMaxLogsHelper;
 
 public class FinishWeekActivity extends FragmentActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish_week);
     }
@@ -67,6 +70,8 @@ public class FinishWeekActivity extends FragmentActivity {
             editor.putString("ohp_max",String.valueOf(ohpIncrement+ohpMax));
         }
         editor.commit();
+        EventBus.getDefault().postSticky(new DatabaseUpdate("Plan refreshed!"));
+
 
         this.finish();
 

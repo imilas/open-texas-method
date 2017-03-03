@@ -49,16 +49,14 @@
                     android:layout_weight="1" />
                 <EditText
                     android:id="@+id/squat_max"
-                    android:inputType="phone"
-                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_width="0dp" />
 
                 <EditText
                     android:id="@+id/squat_increment"
-                    android:inputType="phone"
-                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_width="0dp" />
@@ -79,15 +77,13 @@
                 <EditText
                     android:id="@+id/deadlift_max"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
                     android:layout_weight="1"
                     android:layout_width="0dp"/>
                 <EditText
                     android:id="@+id/deadlift_increment"
                     android:layout_weight="1"
-                    android:inputType="phone"
-                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -107,8 +103,7 @@
                 <EditText
                     android:id="@+id/bench_max"
                     android:layout_weight="1"
-                    android:inputType="phone"
-                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     />
@@ -116,41 +111,38 @@
                 <EditText
                     android:id="@+id/bench_increment"
                     android:layout_weight="1"
-                    android:inputType="phone"
                     android:layout_width="0dp"
-                    android:digits="0123456789"
+                    android:inputType="numberDecimal"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
-<!--OHP-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
 
-            <TextView
-                android:text="OHP"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1" />
-            <EditText
-                android:id="@+id/ohp_max"
-                android:layout_weight="1"
-                android:inputType="phone"
-                android:layout_width="0dp"
-                android:digits="0123456789"
-                android:layout_height="wrap_content"
-                />
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-            <EditText
-                android:id="@+id/ohp_increment"
-                android:layout_weight="1"
-                android:inputType="phone"
-                android:layout_width="0dp"
-                android:digits="0123456789"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
+                <TextView
+                    android:text="OHP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1" />
+                <EditText
+                    android:id="@+id/ohp_max"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    />
+
+                <EditText
+                    android:id="@+id/ohp_increment"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
 
         <LinearLayout
         android:layout_width="match_parent"

@@ -36,6 +36,13 @@ public class TexasMethodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        SharedPreferences prefs = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = prefs.edit();
+//
+//        editor.putString("ohp_max","100");
+//        editor.commit();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
         this.prefs = this.getSharedPreferences(

@@ -127,9 +127,6 @@ public class TexasMethodActivity extends AppCompatActivity {
         }
     }
 
-
-
-
     private class ScreenSlidePagerAdapter extends FragmentPagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);

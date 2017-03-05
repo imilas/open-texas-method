@@ -70,11 +70,11 @@ public abstract  class ThePlan {
         }
     }
 
-    public int roundToLbs (double weight){
-        return (int)((weight % 5 == 0) ? weight : weight + 5 - (weight % 5));
+    public double roundToLbs (double weight){
+        return (double)((weight % 5 == 0) ? weight : weight + 5 - (weight % 5));
     }
-    public int roundToKgs (Double weight) {
-        return (int)((weight % 2.5 == 0) ? weight : weight + 2.5 - (weight % 2.5));
+    public double roundToKgs (Double weight) {
+        return (double)((weight % 2.5 == 0) ? weight : weight + 2.5 - (weight % 2.5));
     }
 
     public abstract WorkoutWeek week1();

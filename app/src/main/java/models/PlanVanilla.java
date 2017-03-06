@@ -37,7 +37,10 @@ public class PlanVanilla  extends ThePlan{
         Exercise exercise3 = new Exercise("bench",benchSetsMon);
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
-        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
+        for (int i =0; i<3; i++){
+            liftSetsMon.add(new Set("12", calculateWeight(liftMax, 0.70, unit, 0)));
+        }
+
         Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
 
         ArrayList<Exercise>  exercisesVol=new ArrayList<Exercise>();
@@ -91,11 +94,10 @@ public class PlanVanilla  extends ThePlan{
         benchSetsIntense.add(new Set("5",calculateWeight(benchMax,frmFraction,unit,benchIncrement)));
         exercise3 = new Exercise("bench",benchSetsIntense);
 
-        ArrayList<Set> liftSetsIntense= new ArrayList<>();
-        for (int i = 0; i<3; i++) {
-            liftSetsIntense.add(new Set("12", calculateWeight(liftMax, 0.75, unit, 0)));
-        }
-        exercise2 = new Exercise("deadlift",liftSetsIntense);
+        ArrayList<Set> liftSetsVol= new ArrayList<>();
+        liftSetsVol.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
+
+        exercise2 = new Exercise("deadlift",liftSetsVol);
 
 
         exercisesVol=new ArrayList<Exercise>();
@@ -128,7 +130,10 @@ public class PlanVanilla  extends ThePlan{
         Exercise exercise3 = new Exercise("ohp",benchSetsMon);
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
-        liftSetsMon.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
+        for (int i =0; i<3; i++){
+            liftSetsMon.add(new Set("12", calculateWeight(liftMax, 0.75, unit, 0)));
+        }
+
         Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
 
         ArrayList<Exercise>  exercisesVol=new ArrayList<Exercise>();
@@ -182,11 +187,10 @@ public class PlanVanilla  extends ThePlan{
         benchSetsIntense.add(new Set("5",calculateWeight(ohpMax,frmFraction,unit,benchIncrement)));
         exercise3 = new Exercise("ohp",benchSetsIntense);
 
-        ArrayList<Set> liftSetsIntense= new ArrayList<>();
-        for (int i = 0; i<3; i++) {
-            liftSetsIntense.add(new Set("12", calculateWeight(liftMax, 0.75, unit, 0)));
-        }
-        exercise2 = new Exercise("deadlift",liftSetsIntense);
+
+        ArrayList<Set> liftSetsVol= new ArrayList<>();
+        liftSetsVol.add(new Set("5",calculateWeight(liftMax,fL,unit,deadliftIncrement)));
+        exercise2 = new Exercise("deadlift",liftSetsVol);
 
 
         exercisesVol=new ArrayList<Exercise>();

@@ -125,6 +125,7 @@ public class TexasMethodActivity extends AppCompatActivity {
                     editor.commit();
                     break;
         }
+        rebuild();
     }
 
     private class ScreenSlidePagerAdapter extends FragmentPagerAdapter {

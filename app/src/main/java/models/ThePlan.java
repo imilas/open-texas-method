@@ -39,13 +39,13 @@ public abstract  class ThePlan {
 
         unit = prefs.getString("unit","lbs");
 
-        benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
-        squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
+        benchMax = Double.parseDouble(prefs.getString("bench_max", "100"));
+        squatMax = Double.parseDouble(prefs.getString("squat_max", "200"));
         liftMax = Double.parseDouble(prefs.getString("deadlift_max", "300"));
+        ohpMax = Double.parseDouble(prefs.getString("ohp_max", "100"));
         deadliftIncrement = Double.parseDouble(prefs.getString("deadlift_increment", "5"));
         squatIncrement = Double.parseDouble(prefs.getString("squat_increment", "5"));
         benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
-        ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
         ohpIncrement = Double.parseDouble(prefs.getString("ohp_increment", "5"));
 
         planAlternatives.add(week1());

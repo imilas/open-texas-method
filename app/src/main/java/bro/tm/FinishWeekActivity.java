@@ -41,20 +41,20 @@ public class FinishWeekActivity extends FragmentActivity {
         double benchMax = Double.parseDouble(prefs.getString("bench_max", "400"));
         double squatMax = Double.parseDouble(prefs.getString("squat_max", "300"));
         double deadLiftMax = Double.parseDouble(prefs.getString("deadlift_max", "420"));
+        double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
         double benchIncrement = Double.parseDouble(prefs.getString("bench_increment", "5"));
         double  deadliftIncrement= Double.parseDouble(prefs.getString("deadlift_increment", "5"));
         double  squatIncrement= Double.parseDouble(prefs.getString("squat_increment", "5"));
-        double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "300"));
         double ohpIncrement = Double.parseDouble(prefs.getString("ohp_increment", "5"));
 
 
         WeeklyMaxLogsHelper logs = new WeeklyMaxLogsHelper(this);
         SQLiteDatabase db = logs.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("Squat", squatMax);
-        values.put("Bench", benchMax);
-        values.put("Deadlift", deadLiftMax);
-        values.put("OHP", ohpMax);
+        values.put("squat", squatMax);
+        values.put("bench", benchMax);
+        values.put("deadlift", deadLiftMax);
+        values.put("ohp", ohpMax);
         long newRowId = db.insert("logs", null, values);
 
         if(rb.isChecked()){

@@ -47,7 +47,10 @@ public class LogsFragment extends Fragment {
         LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>();
         LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>();
         LineGraphSeries<DataPoint> series4 = new LineGraphSeries<>();
-
+        //series 1:ohp
+        //series 2: bench
+        //series 3 : deadlift
+        //series 4 : squat
         series1.setDrawDataPoints(true);
         series2.setDrawDataPoints(true);
         series3.setDrawDataPoints(true);
@@ -93,13 +96,13 @@ public class LogsFragment extends Fragment {
         int seriesLength = cursor.getCount()+1;
         series1.appendData(new DataPoint(seriesLength,ohpMax),true,seriesLength);
         series2.appendData(new DataPoint(seriesLength,benchMax),true,seriesLength);
-        series3.appendData(new DataPoint(seriesLength,squatMax),true,seriesLength);
-        series4.appendData(new DataPoint(seriesLength,deadLiftMax),true,seriesLength);
+        series3.appendData(new DataPoint(seriesLength,deadLiftMax),true,seriesLength);
+        series4.appendData(new DataPoint(seriesLength,squatMax),true,seriesLength);
 
 
         benchGraph.addSeries(series2);
-        deadliftGraph.addSeries(series4);
-        squatGraph.addSeries(series3);
+        deadliftGraph.addSeries(series3);
+        squatGraph.addSeries(series4);
         ohpGraph.addSeries(series1);
 
         benchGraph.getViewport().setScalable(true);

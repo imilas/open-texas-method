@@ -15,8 +15,8 @@ android {
         applicationId "bro.tm"
         minSdkVersion 20
         targetSdkVersion 25
-        versionCode 4
-        versionName "pre-alpha"
+        versionCode 5
+        versionName "alpha"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,22 +30,32 @@ android {
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com'
+        }
+
+
     }
 
     dependencies {
         classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.6.2'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
+
     }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree( dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
     compile 'com.android.support:design:25.0.1'
     compile 'me.grantland:autofittextview:0.2.+'
     compile 'com.jjoe64:graphview:4.2.1'
     compile 'org.greenrobot:eventbus:3.0.0'
+
     testCompile 'junit:junit:4.12'
+
 }
 apply plugin: 'com.getkeepsafe.dexcount'

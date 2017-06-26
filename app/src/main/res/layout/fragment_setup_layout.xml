@@ -180,21 +180,21 @@
             android:layout_height="wrap_content">
             <Button
                 android:text="Set Current Max"
-
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="updateMaxes"
                 android:id="@+id/update_max" />
 
         </LinearLayout>
 
 
-        <Button
-            android:text="export_logs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="exportLogs"
-            android:id="@+id/export_logs" />
+        <!--<Button-->
+            <!--android:text="export_logs"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:onClick="exportLogs"-->
+            <!--android:id="@+id/export_logs" />-->
         <!--<Spinner-->
             <!--android:id="@+id/plans_spinner"-->
             <!--android:layout_width="match_parent"-->

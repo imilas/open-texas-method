@@ -194,6 +194,11 @@ public class TexasMethodActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void planSelector(View v){
+        Intent intent = new Intent(this, PlanSelectActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onResume(){
         super.onResume();

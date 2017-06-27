@@ -11,11 +11,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-
         >
 
-
-
+        <activity android:name="PlanSelectActivity">
+        </activity>
         <activity android:name=".TexasMethodActivity"
             android:windowSoftInputMode="stateHidden">
 

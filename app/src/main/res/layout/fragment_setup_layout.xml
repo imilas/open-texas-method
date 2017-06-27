@@ -188,19 +188,35 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="3">
+            <TextView
+                android:text="Plan Flavor:"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1" />
+            <TextView
+                android:text="OHP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:id="@+id/flavor_text"
+                />
 
-        <!--<Button-->
-            <!--android:text="export_logs"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:onClick="exportLogs"-->
-            <!--android:id="@+id/export_logs" />-->
-        <!--<Spinner-->
-            <!--android:id="@+id/plans_spinner"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@android:drawable/btn_dropdown"-->
-            <!--android:spinnerMode="dialog"/>-->
+            <Button
+                android:text="select flavor"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:onClick="planSelector" />
+
+        </LinearLayout>
+
+
 
 
     </LinearLayout>

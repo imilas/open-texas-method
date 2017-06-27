@@ -53,7 +53,7 @@ public class PlanFragment extends Fragment {
         SharedPreferences prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         String planFlavor = prefs.getString("plan_type","Powerlifting TM");
-        planFlavor = "General Strength TM";
+        //planFlavor = "General Strength TM";
         ThePlan plan = null;
 
         if (planFlavor.equals("General Strength TM")){

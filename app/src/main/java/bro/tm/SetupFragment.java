@@ -75,10 +75,12 @@ public class SetupFragment extends Fragment{
 
     }
 
+    //TODO
+    //wth is this
     // This method will be called when a MessageEvent is posted (in the UI thread for Toast)
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void DatabaseUpdate(DatabaseUpdate event) {
-        Toast.makeText(this.getActivity(), event.message + "setup fragment", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this.getActivity(), event.message + "setup fragment", Toast.LENGTH_SHORT).show();
         setSetupView();
     }
 

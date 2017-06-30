@@ -2,5 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff80ab</color>
+    <color name="colorWarmup1">#bbd9ff</color>
+    <color name="colorWarmup2">#bbd9ff</color>
+    <color name="colorWarmup3">#bbd9ff</color>
 </resources>

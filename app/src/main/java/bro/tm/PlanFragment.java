@@ -108,7 +108,18 @@ public class PlanFragment extends Fragment {
                     numberContainer.addView(setXRepsLayout);
                 }
                 setView.addView(numberContainer);
+
                 rootView.addView(setView);
+
+                //the warmup row is created here
+                try{
+                    ViewGroup warmupLayout = (ViewGroup) inflater.inflate(R.layout.warmup_row, container, false);
+                    setupWarmUps(Float.parseFloat(exercise.sets.get(0).Weight),warmupLayout);
+                    rootView.addView(warmupLayout);
+                }catch (NumberFormatException e){
+                    //sometimes no weight is specified so no need for warmups i guess
+                }
+
             }
 
         }
@@ -118,6 +129,27 @@ public class PlanFragment extends Fragment {
     }
     public void updateView(){
 
+
+    }
+
+    private  void setupWarmUps(double firstSetWeight, ViewGroup warmUpRow){
+
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight1)).setText(String.valueOf(roundNum(firstSetWeight*0.3)));
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep1)).setText("8");
+
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight2)).setText(String.valueOf(roundNum(firstSetWeight*0.5)));
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep2)).setText("5");
+
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight3)).setText(String.valueOf(roundNum(firstSetWeight*0.65)));
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep3)).setText("3");
+
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight4)).setText(String.valueOf(roundNum(firstSetWeight*0.85)));
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep4)).setText("2");
+
+    }
+
+    public int roundNum (double weight){
+        return (int)((weight % 5 == 0) ? weight : weight + 5 - (weight % 5));
     }
 
     // This method will be called when a MessageEvent is posted (in the UI thread for Toast)

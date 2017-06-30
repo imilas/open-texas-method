@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical" android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="match_parent" >
+        <me.grantland.widget.AutofitTextView
+            android:text="Warmup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/warmup"
+            android:background="@color/colorWarmup2"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical" android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content">
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_weight1"
+            android:background="@color/colorWarmup1"
+            android:gravity="center" />
+
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_rep1"
+            android:background="@color/colorWarmup3"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical" android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content">
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_weight2"
+            android:background="@color/colorWarmup1"
+            android:gravity="center" />
+
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_rep2"
+            android:background="@color/colorWarmup3"
+            android:gravity="center"/>
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical" android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content">
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_weight3"
+            android:background="@color/colorWarmup1"
+            android:gravity="center" />
+
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_rep3"
+            android:background="@color/colorWarmup3"
+            android:gravity="center"/>
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical" android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content">
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_weight4"
+            android:background="@color/colorWarmup1"
+            android:gravity="center" />
+
+        <me.grantland.widget.AutofitTextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_rep4"
+            android:background="@color/colorWarmup3"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>

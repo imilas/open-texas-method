@@ -174,9 +174,9 @@ public class PlanPowerlifting extends ThePlan {
 
         ArrayList<Set> liftSetsIntense= new ArrayList<>();
         for (int i = 0; i<3; i++) {
-            liftSetsIntense.add(new Set("12", calculateWeight(liftMax, 0.65, unit, 0)));
+            liftSetsIntense.add(new Set("12", calculateWeight(liftMax, 0.60, unit, 0)));
         }
-        exercise2 = new Exercise("deadlift",liftSetsIntense);
+        exercise2 = new Exercise("asdasdsadeadlift",liftSetsIntense);
 
 
         exercisesVol=new ArrayList<Exercise>();

@@ -38,6 +38,12 @@
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:id="@+id/ohp_switch" />
+    <Switch
+        android:text="Clean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:id="@+id/clean_switch" />
 
     <Button
         android:text="Save and Finish week"
@@ -45,4 +51,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button2" />
+
 </LinearLayout>

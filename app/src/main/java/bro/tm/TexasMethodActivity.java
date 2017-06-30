@@ -92,6 +92,11 @@ public class TexasMethodActivity extends AppCompatActivity {
         String ohpMax =  tv.getText().toString();
         tv = (TextView) setupLayout.findViewById(R.id.ohp_increment);
         String ohpIncrement =  tv.getText().toString();
+        tv = (TextView) setupLayout.findViewById(R.id.clean_max);
+        String cleanMax =  tv.getText().toString();
+        tv = (TextView) setupLayout.findViewById(R.id.clean_increment);
+        String cleanIncrement =  tv.getText().toString();
+
 
         editor.putString("bench_max",benchMax);
         editor.putString("squat_max",squatMax);
@@ -101,6 +106,8 @@ public class TexasMethodActivity extends AppCompatActivity {
         editor.putString("bench_increment",benchIncrement);
         editor.putString("ohp_max",ohpMax);
         editor.putString("ohp_increment",ohpIncrement);
+        editor.putString("clean_max",cleanMax);
+        editor.putString("clean_increment",cleanIncrement);
         editor.commit();
         //update the PlanVanilla
        rebuild();

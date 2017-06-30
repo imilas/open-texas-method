@@ -38,7 +38,7 @@ public class PlanVanilla  extends ThePlan{
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
         for (int i =0; i<3; i++){
-            liftSetsMon.add(new Set("12", calculateWeight(liftMax, 0.70, unit, 0)));
+            liftSetsMon.add(new Set("12", calculateWeight(liftMax, 0.65, unit, 0)));
         }
 
         Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
@@ -130,11 +130,11 @@ public class PlanVanilla  extends ThePlan{
         Exercise exercise3 = new Exercise("ohp",benchSetsMon);
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
-        for (int i =0; i<3; i++){
-            liftSetsMon.add(new Set("12", calculateWeight(liftMax, 0.75, unit, 0)));
+        for (int i =0; i<5; i++){
+            liftSetsMon.add(new Set("3", calculateWeight(cleanMax, fC, unit, 0)));
         }
 
-        Exercise exercise2 = new Exercise("deadlift",liftSetsMon);
+        Exercise exercise2 = new Exercise("Clean",liftSetsMon);
 
         ArrayList<Exercise>  exercisesVol=new ArrayList<Exercise>();
         exercisesVol.add(exercise1);

@@ -40,6 +40,7 @@ public class LogsFragment extends Fragment {
         GraphView squatGraph = (GraphView) rootView.findViewById(R.id.squat_graph);
         GraphView deadliftGraph = (GraphView) rootView.findViewById(R.id.deadlift_graph);
         GraphView ohpGraph = (GraphView) rootView.findViewById(R.id.ohp_graph);
+        GraphView cleanGraph = (GraphView) rootView.findViewById(R.id.clean_graph);
 
         cursor.moveToFirst();
 
@@ -47,14 +48,17 @@ public class LogsFragment extends Fragment {
         LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>();
         LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>();
         LineGraphSeries<DataPoint> series4 = new LineGraphSeries<>();
+        LineGraphSeries<DataPoint> series5 = new LineGraphSeries<>();
         //series 1:ohp
         //series 2: bench
         //series 3 : deadlift
         //series 4 : squat
+        //series 5 : clean
         series1.setDrawDataPoints(true);
         series2.setDrawDataPoints(true);
         series3.setDrawDataPoints(true);
         series4.setDrawDataPoints(true);
+        series5.setDrawDataPoints(true);
 
         squatGraph.setTitle("Squats");
         squatGraph.setTitleTextSize(80);
@@ -71,6 +75,10 @@ public class LogsFragment extends Fragment {
         ohpGraph.setTitle("OHP");
         ohpGraph.setTitleTextSize(80);
         ohpGraph.getGridLabelRenderer().setNumHorizontalLabels(8);
+
+        cleanGraph.setTitle("Clean");
+        cleanGraph.setTitleTextSize(80);
+        cleanGraph.getGridLabelRenderer().setNumHorizontalLabels(8);
         
 
         series1.setColor(Color.RED);
@@ -82,7 +90,7 @@ public class LogsFragment extends Fragment {
             series2.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(1)),true,cursor.getCount());
             series3.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(2)),true,cursor.getCount());
             series4.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(3)),true,cursor.getCount());
-
+            series5.appendData(new DataPoint(cursor.getPosition(),cursor.getDouble(4)),true,cursor.getCount());
             cursor.moveToNext();
         }
         SharedPreferences prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -92,18 +100,21 @@ public class LogsFragment extends Fragment {
         double squatMax = Double.parseDouble(prefs.getString("squat_max", "200"));
         double deadLiftMax = Double.parseDouble(prefs.getString("deadlift_max", "220"));
         double ohpMax = Double.parseDouble(prefs.getString("ohp_max", "100"));
+        double cleanMax = Double.parseDouble(prefs.getString("clean_max", "135"));
 
         int seriesLength = cursor.getCount()+1;
         series1.appendData(new DataPoint(seriesLength,ohpMax),true,seriesLength);
         series2.appendData(new DataPoint(seriesLength,benchMax),true,seriesLength);
         series3.appendData(new DataPoint(seriesLength,deadLiftMax),true,seriesLength);
         series4.appendData(new DataPoint(seriesLength,squatMax),true,seriesLength);
+        series5.appendData(new DataPoint(seriesLength,cleanMax),true,seriesLength);
 
 
         benchGraph.addSeries(series2);
         deadliftGraph.addSeries(series3);
         squatGraph.addSeries(series4);
         ohpGraph.addSeries(series1);
+        cleanGraph.addSeries(series5);
 
         benchGraph.getViewport().setScalable(true);
         benchGraph.getViewport().setScrollable(true);
@@ -126,6 +137,11 @@ public class LogsFragment extends Fragment {
         ohpGraph.getViewport().setScrollable(true);
         ohpGraph.getViewport().setScalableY(true);
         ohpGraph.getViewport().setScrollableY(true);
+
+        cleanGraph.getViewport().setScalable(true);
+        cleanGraph.getViewport().setScrollable(true);
+        cleanGraph.getViewport().setScalableY(true);
+        cleanGraph.getViewport().setScrollableY(true);
         return rootView;
     }
 

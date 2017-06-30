@@ -43,11 +43,11 @@ public class SetupFragment extends Fragment{
         //set the maxes and increments
         SharedPreferences  prefs = this.getActivity().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         TextView v = (TextView) rootView.findViewById(R.id.squat_max);
-        v.setText(prefs.getString("squat_max","200"));
+        v.setText(prefs.getString("squat_max","300"));
         v = (TextView) rootView.findViewById(R.id.deadlift_max);
-        v.setText(prefs.getString("deadlift_max","220"));
+        v.setText(prefs.getString("deadlift_max","400"));
         v = (TextView) rootView.findViewById(R.id.bench_max);
-        v.setText(prefs.getString("bench_max","100"));
+        v.setText(prefs.getString("bench_max","225"));
         v = (TextView) rootView.findViewById(R.id.bench_increment);
         v.setText(prefs.getString("bench_increment","10"));
         v = (TextView) rootView.findViewById(R.id.squat_increment);
@@ -55,9 +55,13 @@ public class SetupFragment extends Fragment{
         v = (TextView) rootView.findViewById(R.id.deadlift_increment);
         v.setText(prefs.getString("deadlift_increment","5"));
         v = (TextView) rootView.findViewById(R.id.ohp_max);
-        v.setText(prefs.getString("ohp_max","100"));
+        v.setText(prefs.getString("ohp_max","200"));
         v = (TextView) rootView.findViewById(R.id.ohp_increment);
         v.setText(prefs.getString("ohp_increment","5"));
+        v = (TextView) rootView.findViewById(R.id.clean_max);
+        v.setText(prefs.getString("clean_max","180"));
+        v = (TextView) rootView.findViewById(R.id.clean_increment);
+        v.setText(prefs.getString("clean_increment","5"));
         //units
         String unit = prefs.getString("unit","lbs");
         //flavors

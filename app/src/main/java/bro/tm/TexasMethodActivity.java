@@ -18,14 +18,6 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.opencsv.CSVWriter;
-
-import java.io.FileWriter;
-import java.io.IOException;
-
-import models.WeeklyMaxLogsHelper;
-
-
 public class TexasMethodActivity extends AppCompatActivity {
 
     private static final int NUM_PAGES =4;
@@ -36,15 +28,15 @@ public class TexasMethodActivity extends AppCompatActivity {
     private PagerAdapter mPagerAdapter;
     SharedPreferences prefs = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Intent intent = new Intent(this,startup_activity.class);
+        startActivity(intent);
+
         SharedPreferences prefs = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = prefs.edit();
-//
-//        editor.putString("ohp_max","100");
-//        editor.commit();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);

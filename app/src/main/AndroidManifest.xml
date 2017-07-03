@@ -26,6 +26,8 @@
 
         <activity android:name=".FinishWeekActivity">
         </activity>
+        <activity android:name=".startup_activity">
+        </activity>
 
         <activity android:name=".TimerActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">

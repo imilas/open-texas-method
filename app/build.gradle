@@ -16,7 +16,7 @@ android {
         applicationId "bro.tm"
         minSdkVersion 20
         targetSdkVersion 25
-        versionCode 5
+        versionCode 6
         versionName "alpha"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

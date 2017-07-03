@@ -37,6 +37,7 @@ public abstract  class ThePlan {
     double fL=1 * frmFraction;
     double fC=0.87 * frmFraction;
     double fO=0.90 * frmFraction;
+    double fLA=0.7;
 
     public ThePlan(SharedPreferences activityPrefs){
         prefs=activityPrefs;

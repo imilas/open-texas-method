@@ -29,7 +29,7 @@ public class PlanPowerlifting extends ThePlan {
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
         for (int i = 0; i<3; i++) {
-            liftSetsMon.add(new Set("8", calculateWeight(liftMax, 0.70, unit, 0)));
+            liftSetsMon.add(new Set("8", calculateWeight(liftMax, fLA, unit, 0)));
         }
         Exercise exercise2 = new Exercise("RDL/\nSLDL",liftSetsMon);
 
@@ -123,7 +123,7 @@ public class PlanPowerlifting extends ThePlan {
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
         for (int i = 0; i<3; i++) {
-            liftSetsMon.add(new Set("8", calculateWeight(liftMax, 0.70, unit, 0)));
+            liftSetsMon.add(new Set("8", calculateWeight(liftMax, fLA, unit, 0)));
         }
         Exercise exercise2 = new Exercise("RDL/\nSLDL",liftSetsMon);
 

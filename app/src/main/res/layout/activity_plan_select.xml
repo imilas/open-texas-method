@@ -13,18 +13,19 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vanilla plan alternates ohp and bench and includes cleans" />
+        android:text="Vanilla plan alternates ohp and bench and includes cleans
+        " />
 
     <TextView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Powerlifting plan for focusing on the big 3" />
+        android:text="Powerlifting plan for focusing on the big 3
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="I'll make this more exciting I promise" />
+I'll make this more exciting I promise
+"
+
+        />
+
 
 </LinearLayout>

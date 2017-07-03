@@ -38,7 +38,7 @@ public class PlanVanilla  extends ThePlan{
 
         ArrayList<Set> liftSetsMon= new ArrayList<>();
         for (int i =0; i<3; i++){
-            liftSetsMon.add(new Set("8", calculateWeight(liftMax, 0.65, unit, 0)));
+            liftSetsMon.add(new Set("8", calculateWeight(liftMax, fLA, unit, 0)));
         }
 
         Exercise exercise2 = new Exercise("RDL\nSLDL",liftSetsMon);

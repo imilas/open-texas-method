@@ -10,16 +10,16 @@
     android:spinnerMode="dialog"/>
 
     <TextView
-        android:id="@+id/textView2"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Vanilla plan for alternating between bench and ohp every week" />
+        android:text="Vanilla plan alternates ohp and bench and includes cleans" />
 
     <TextView
-        android:id="@+id/textView2"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Powerlifting plan for focusing on bench both weeks" />
+        android:text="Powerlifting plan for focusing on the big 3" />
 
     <TextView
         android:id="@+id/textView2"

@@ -178,7 +178,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
             <TextView
-                android:text="Weight Unit"
+                android:text="Round to"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -192,12 +192,12 @@
             <RadioButton android:id="@+id/radio_lbs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pounds"
+                android:text="5 (lbs)"
                 android:onClick="saveUnit"/>
             <RadioButton android:id="@+id/radio_kgs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kilograms"
+                android:text="2.5 (kgs)"
                 android:onClick="saveUnit"/>
         </RadioGroup>
 

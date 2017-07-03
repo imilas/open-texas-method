@@ -135,16 +135,16 @@ public class PlanFragment extends Fragment {
     private  void setupWarmUps(double firstSetWeight, ViewGroup warmUpRow){
 
         ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight1)).setText(String.valueOf(roundNum(firstSetWeight*0.3)));
-        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep1)).setText("8");
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep1)).setText("x8");
 
         ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight2)).setText(String.valueOf(roundNum(firstSetWeight*0.5)));
-        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep2)).setText("5");
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep2)).setText("x5");
 
         ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight3)).setText(String.valueOf(roundNum(firstSetWeight*0.65)));
-        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep3)).setText("3");
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep3)).setText("x3");
 
         ((AutofitTextView) warmUpRow.findViewById(R.id.set_weight4)).setText(String.valueOf(roundNum(firstSetWeight*0.85)));
-        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep4)).setText("2");
+        ((AutofitTextView) warmUpRow.findViewById(R.id.set_rep4)).setText("x2");
 
     }
 

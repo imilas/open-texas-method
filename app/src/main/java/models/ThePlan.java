@@ -34,8 +34,9 @@ public abstract  class ThePlan {
     double frmFraction = 0.87; //five rep max fraction
     double fS=0.87 * frmFraction ;
     double fB=0.85 * frmFraction ;
-    double fL=0.9 * frmFraction;
+    double fL=1 * frmFraction;
     double fC=0.87 * frmFraction;
+    double fO=0.90 * frmFraction;
 
     public ThePlan(SharedPreferences activityPrefs){
         prefs=activityPrefs;

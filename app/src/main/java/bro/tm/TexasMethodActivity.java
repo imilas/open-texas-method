@@ -66,29 +66,31 @@ public class TexasMethodActivity extends AppCompatActivity {
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = prefs.edit();
+
         //get new weights
         TextView tv = (TextView) setupLayout.findViewById(R.id.bench_max);
-        String benchMax =  tv.getText().toString();
+        String benchMax =  checkEmpty(tv.getText().toString());
         tv = (TextView) setupLayout.findViewById(R.id.squat_max);
-        String squatMax =  tv.getText().toString();
+        String squatMax =  checkEmpty(tv.getText().toString());
         tv = (TextView) setupLayout.findViewById(R.id.deadlift_max);
-        String deadLiftMax =  tv.getText().toString();
+        String deadLiftMax =  checkEmpty(tv.getText().toString());
         //get new increments
         tv = (TextView) setupLayout.findViewById(R.id.deadlift_increment);
-        String deadliftIncrement =  tv.getText().toString();
+        String deadliftIncrement = checkEmpty(tv.getText().toString());
         tv = (TextView) setupLayout.findViewById(R.id.squat_increment);
-        String squatIncrement =  tv.getText().toString();
+        String squatIncrement =  checkEmpty(tv.getText().toString());;
         tv = (TextView) setupLayout.findViewById(R.id.bench_increment);
-        String benchIncrement =  tv.getText().toString();
+        String benchIncrement =  checkEmpty(tv.getText().toString());
         tv = (TextView) setupLayout.findViewById(R.id.ohp_max);
-        String ohpMax =  tv.getText().toString();
+        String ohpMax =  checkEmpty(tv.getText().toString());;
         tv = (TextView) setupLayout.findViewById(R.id.ohp_increment);
-        String ohpIncrement =  tv.getText().toString();
+        String ohpIncrement =  checkEmpty(tv.getText().toString());
         tv = (TextView) setupLayout.findViewById(R.id.clean_max);
-        String cleanMax =  tv.getText().toString();
+        String cleanMax =  checkEmpty(tv.getText().toString());
         tv = (TextView) setupLayout.findViewById(R.id.clean_increment);
-        String cleanIncrement =  tv.getText().toString();
+        String cleanIncrement =  checkEmpty(tv.getText().toString());
 
+        //sanitize the inputs otherwise dont change them
 
         editor.putString("bench_max",benchMax);
         editor.putString("squat_max",squatMax);
@@ -100,9 +102,27 @@ public class TexasMethodActivity extends AppCompatActivity {
         editor.putString("ohp_increment",ohpIncrement);
         editor.putString("clean_max",cleanMax);
         editor.putString("clean_increment",cleanIncrement);
+
         editor.commit();
         //update the PlanVanilla
        rebuild();
+
+
+    }
+
+    private String checkEmpty(String boxVal){
+        try {
+            java.lang.Double.parseDouble(boxVal);
+        } catch(Exception e) {
+            boxVal = "0";
+        }
+
+        if(boxVal.isEmpty() || boxVal.length() == 0 || boxVal.equals("") || boxVal == null)
+        {
+            //EditText is empty
+            boxVal = "0";
+        }
+        return boxVal;
     }
 
     public void saveUnit(View view){
